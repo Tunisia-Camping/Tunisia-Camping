@@ -15,7 +15,7 @@ const connection = new Sequelize(
 //verify your connection here !
 connection.authenticate()
 .then(()=>console.log("db connected"))
-.catch(()=>console.log("error on db connection"))
+.catch((error)=>console.log("error on db connection",error))
 
 
 

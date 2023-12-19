@@ -1,6 +1,8 @@
+require('dotenv').config()
+console.log(typeof(process.env.PASS)) 
 module.exports = {
   host: "localhost",
-  user: "root",
-  password: "07438283",
+  user: process.env.NAME,
+  password: process.env.PASS,
   database: "tunisiacamping",
 };
