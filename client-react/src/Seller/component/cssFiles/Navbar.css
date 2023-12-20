@@ -1,0 +1,39 @@
+nav{
+    background-color:white;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    top: 88px;
+    left: 135px;
+    gap: 148px
+
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    list-style: none;
+    text-align: center;
+   
+}
+
+nav ul li a{
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+    color: black;
+}
+
+li:hover>a{
+ color:blue
+}
+
+.WebSiteName{
+    font-weight: bolder;
+    font-size: 25px;
+}
