@@ -7,7 +7,7 @@ import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
 import NavBar from './user/edit/navbar.jsx'
 import Footer from './user/edit/footer.jsx'
-
+import ProductsDetails from './user/ProductDetail.jsx'
 function App() {
    
 
@@ -23,8 +23,9 @@ function App() {
           <Route path='/addProduct' element={<CreateProduct/>} />
           <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
           <Route path='/updateProfileSeller' element={<Profile/>} />
-          <Route path='/updateProfileClient' element={<EditProfile/>} />
-      
+          <Route path='/updatePDrofileClient' element={<EditProfile/>} />
+          <Route path='/ProductDEtails' element={<ProductsDetails/>} />
+
      
       </Routes>
       < Footer/>
