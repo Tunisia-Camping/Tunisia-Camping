@@ -1,15 +1,20 @@
-import React from 'react'
-
+import React from 'react' 
+import {  Routes , Route } from 'react-router-dom'
 import './App.css'
-
+import Home from './Home'
+import Lab from './Lab'
 function App() {
-  
+   
 
   return (
     
-      <div>
-     hi
-      </div>
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/lab" element={<Lab />} />
+     
+      </Routes>
+     
       
    
   )
