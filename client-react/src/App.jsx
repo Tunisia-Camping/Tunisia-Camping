@@ -1,7 +1,6 @@
 import React from 'react'
-import Seller from './Seller/Seller'
+import Seller from './Seller/Seller.jsx'
 
-import React from 'react' 
 import {  Routes , Route } from 'react-router-dom'
 import './App.css'
 import Home from './Home'
@@ -12,6 +11,7 @@ function App() {
   return (
     
       <div>
+    hi
      <Seller/>
       </div>
       
