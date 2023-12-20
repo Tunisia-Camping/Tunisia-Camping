@@ -1,6 +1,5 @@
 import React from 'react'
-
-import './App.css'
+import Seller from './Seller/Seller'
 
 function App() {
   
@@ -8,7 +7,7 @@ function App() {
   return (
     
       <div>
-     hi
+     <Seller/>
       </div>
       
    
