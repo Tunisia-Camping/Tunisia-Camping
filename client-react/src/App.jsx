@@ -11,9 +11,13 @@ function App() {
 
   return (
     
-      <div>
-     <Seller/>
-      </div>
+      
+      <Routes>
+        <Route path="/" element={<Home />} />   
+        <Route path="/lab" element={<Lab />} />
+     
+      </Routes>
+     
       
    
   )
