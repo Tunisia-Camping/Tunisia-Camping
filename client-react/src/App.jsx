@@ -15,11 +15,11 @@ function App() {
     
       
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/lab" element={<Lab />} />
         <Route path="/user/edit" element={<EditProfile />} />
-     
-      </Routes>
+</Routes>
      
       
    
