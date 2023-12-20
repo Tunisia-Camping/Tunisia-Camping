@@ -1,11 +1,9 @@
-import React from 'react'
-import Seller from './Seller/Seller'
 
 import React from 'react' 
 import {  Routes , Route } from 'react-router-dom'
+import Seller from './Seller/Seller'
 import './App.css'
-import Home from './Home'
-import Lab from './Lab'
+
 function App() {
    
 
@@ -13,8 +11,7 @@ function App() {
     
       
       <Routes>
-        <Route path="/" element={<Home />} />   
-        <Route path="/lab" element={<Lab />} />
+
      
       </Routes>
      
