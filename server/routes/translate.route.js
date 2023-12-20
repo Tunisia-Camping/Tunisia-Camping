@@ -6,6 +6,6 @@ const controller = require("../controllers/translate.controller");
 
 
 
-translateRoute.get("/hello", controller.getAll);
+translateRoute.get("/getAll", controller.getAll);
 
 module.exports = translateRoute;
