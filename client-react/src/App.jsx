@@ -3,20 +3,25 @@ import Seller from './Seller/Seller.jsx'
 
 import {  Routes , Route } from 'react-router-dom'
 import './App.css'
-import Home from './Home'
-import Lab from './Lab'
+import EditProfile from './user/edit/EditProfile.jsx'
+
 function App() {
    
 
   return (
+    <div>
+       hi ur app runs here !
+       {/* <Routes>
+  <Route path="/user/edit" element={<EditProfile />} />
+  </Routes> */}
     
-      <div>
-    hi
-     <Seller/>
-      </div>
+</div>
+      
       
    
   )
+        
+ 
 }
 
 export default App

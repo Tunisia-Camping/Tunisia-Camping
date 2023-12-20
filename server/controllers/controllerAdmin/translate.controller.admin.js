@@ -1,14 +1,6 @@
 // require your Model phrase here
-const {User,Product,sequelize } = require("../../../database-mysql/index");
+const {User,Product} = require("../../../database-mysql/index");
 
-
-// module.exports.isAdmin=(req,res,next)=>{
-//   if(req.user&&req.user.role==="admin"){
-//     next()
-//   }else{
-//     res.status(403).json("Admin access required")
-//   }
-// }
 
 module.exports.getAllClients=(async(req,res)=>{
   try{
@@ -43,36 +35,72 @@ module.exports.getAllProducts=(async(req,res)=>{
     res.status(500).json(err)
   }
 })
-module.exports.addCategory=(async (req,res)=>{
-  const {newCategory}=req.body;
+module.exports.addProduct=(async(req,res)=>{
+  const {name,price,description,unit,category,images}=req.body
 
   try{
-    await Product.create({category:newCategory})
-    res.json('Category added successfully')
+    console.log(req.body);
+
+    const newProduct = await Product.create({
+      name,
+      price,
+      description,
+      unit,
+      category,
+      images,
+    });
+
+    console.log(newProduct); 
+
+    res.json({product:newProduct})
   } catch(err){
+    console.error(err) 
+    res.status(500).json(err)
+  }
+});
+module.exports.updateProduct=(async(req,res)=>{
+
+  const{name,price,description,unit,category,images}=req.body
+
+  try{
+    console.log(req.params.id)
+    const currentProduct=await Product.findByPk(req.params.id)
+    if(!currentProduct){
+      return res.status(404).json('Product not found')
+    }  
+    currentProduct.name = name;
+    currentProduct.price = price;
+    currentProduct.description = description;
+    currentProduct.unit = unit;
+    currentProduct.category = category;
+    currentProduct.images = images;
+
+    await currentProduct.save()
+    console.log(currentProduct)
+
+    res.json(currentProduct)
+  } catch(err){
+    console.error(err)
+    res.status(500).json(err)
+  }
+})
+
+module.exports.deleteProduct=(async(req,res)=>{
+  try{
+    console.log(req.params.id);
+    const currentProduct = await Product.findByPk(req.params.id)
+    if(!currentProduct){
+      return res.status(404).json('Product not found')
+    }
+    await currentProduct.destroy()
+    console.log(currentProduct)
+    res.json('Product deleted successfully');
+  } catch (err) {
     console.error(err);
     res.status(500).json(err);
   }
 })
 
-module.exports.updateCategory=(async(req,res)=>{
-  const {categoryId}=req.params
-  const {updatedCategory}=req.body
-  try{
-    await sequelize.transaction(async (t) => {
-      await Product.update(
-        { category:updatedCategory},
-        { where:{category: categoryId}},
-        {transaction:t}
-      )
-    })
-
-    res.json('Category updated successfully');
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-});
 
 
 
