@@ -1,7 +1,6 @@
 
 import React from 'react' 
 import {  Routes , Route } from 'react-router-dom'
-import Seller from './Seller/Seller'
 import './App.css'
 import SellerHome from './Seller/component/SellerHome.jsx'
 import CreateProduct from './Seller/component/CreateProduct.jsx'
