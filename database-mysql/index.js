@@ -22,10 +22,21 @@ connection.authenticate()
 //  create your table using sequilize loke: like this example manuelement mele5er
 
 const User= connection.define("users",{
-  name : {
+  firstName : {
     type: DataTypes.STRING,
     allowNull: false,
   },
+    lastName : {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  adress : {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "anonymous"
+  },
+
+
   password : {
     type: DataTypes.STRING,
     allowNull: false,
