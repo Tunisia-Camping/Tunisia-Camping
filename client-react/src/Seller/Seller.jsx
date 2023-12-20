@@ -29,6 +29,7 @@ return(
             <Route path="/SellerProfile/:id" element={<Profile/>} />
             <Route path="/addProduct" element={<CreateProduct/>} />
             <Route path="/:name" element={<OneProduct/>} />
+            
         </Routes>
     </div>
 )
