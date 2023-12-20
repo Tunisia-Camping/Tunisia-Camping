@@ -1,6 +1,12 @@
-import React from "react";
+import React, from "react";
 
-const Home=()=>{
 
+const Home=({data})=>{
+    return(
+        <div>
+            
+        </div>
+    )
+ 
 }
 export default Home

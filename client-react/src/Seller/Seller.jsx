@@ -1,32 +1,31 @@
-import React from "react";
+import React,{useEffect, useState}from "react";
+import axios from 'axios'
 import "./Seller.css"
-import {Link, Routes, Route} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
+import Navbar from "./component/Navbar";
+import Footer from "./component/Footer";
 import Home from "./component/Home";
 import CreateProduct from "./component/CreateProduct";
 import OneProduct from "./component/OneProduct";
 import Profile from "./component/Profile";
 
 const Seller=()=>{
+
+    const [data, setData]=useState([])
+
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/seller/getAll").then((res)=>{
+          setData(res.data)
+        })
+        .catch((err)=>{console.log(err)})
+    },[])
+
 return(
     <div>
-        <nav>
-        <ul>
-              <li>
-                <Link to="/HomePage">Home</Link>
-              </li>
-              <li>
-                <Link to="/SellerProfile/:id">Profile</Link>
-              </li>
-              <li>
-                <Link to="/addProduct">Create Product</Link>
-              </li>
-              <li>
-                <Link to="/">Log Out</Link>
-              </li>
-            </ul>
-        </nav>
+        <Navbar/>
+        <Footer/>
         <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home data={data}/>} />
             <Route path="/SellerProfile/:id" element={<Profile/>} />
             <Route path="/addProduct" element={<CreateProduct/>} />
             <Route path="/:name" element={<OneProduct/>} />
