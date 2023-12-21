@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import React, { useState } from "react"; 
 import "./EDIT.css"
 import axios from "axios"
 const EditProfile = () => {
@@ -12,12 +12,13 @@ const [currentPassword,setCurrentPassword]=useState("")
 const [newPassword,setNewPassword]=useState("")
 
 
-  
+
+
 
 const update =async(users)=>{
   try {
     if(newPassword===confirmPassword)
-{    await axios.update("http://localhost:3000/clients/updateClient",users)
+{    await axios.post("http://localhost:3000/clients/updateClient",users)
 alert("your update is successfully")
 return 
   }} catch (error) {

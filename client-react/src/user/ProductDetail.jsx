@@ -1,5 +1,7 @@
 import "./ProductDetails.css";
 import React, { useState } from "react";
+import { Link,useLocation } from "react-router-dom";
+
 import Ps5Controller from "../assets/googlePlay.png";
 import Ps5Controller1 from "../assets/googlePlay.png";
 import Ps5Controller2 from"../assets/googlePlay.png";
@@ -11,6 +13,9 @@ import ReturnIcon from "../assets/icon-delivery.svg";
 import SendIcon from "../assets/icon-delivery.svg"
 function ProductsDetails() {
 const [quantity,setQuantity]=useState(1)
+const location = useLocation();
+  const product = location.state 
+console.log(location.state,"ee")
 // const averageRating =
 //     rating.length > 0
 //       ? rating.reduce(
@@ -40,18 +45,18 @@ const [quantity,setQuantity]=useState(1)
       <div className="ProductDetails_header">
         <div className="ProductDetails_gallery">
           <div className="vertical_gallery">
-            <img src={Ps5Controller1} alt="" />
-            <img src={Ps5Controller2} alt="" />
-            <img src={Ps5Controller3} alt="" />
-            <img src={Ps5Controller4} alt="" />
+            <img src={product.images[0].url} alt="" />
+            <img src={product.images[1].url}alt="" />
+            <img src={product.images[2].url} alt="" />
+            <img src={product.images[0].url} alt="" />
           </div>
           <div className="main_product">
-            <img src={Ps5Controller} alt="" />
+            <img src={product.images[2].url} alt="" />
           </div>
         </div>
         <div className="ProductDetails_Info">
           <div className="Details">
-            <p id="Product_Title">Havic HV G-92 Gamepad</p>
+            <p id="Product_Title">{product.name}</p>
             <div className="Details_reviews">
               <div id="reviews">
                 <img src={Star} alt="" />
@@ -63,11 +68,9 @@ const [quantity,setQuantity]=useState(1)
               <p id="reviews_counter">(150 Reviews)</p>
               <p id="availibilty">In Stock</p>
             </div>
-            <p id="price">${192.00*quantity}</p>
+            <p id="price">${product.price*quantity}</p>
             <p id="description">
-              PlayStation 5 Controller Skin High quality vinyl with air channel
-              adhesive for easy bubble free install & mess free removal Pressure
-              sensitive.
+             {product.description}
             </p>
           </div>
           <div className="buttons">
