@@ -8,6 +8,8 @@ import EditProfile from './user/edit/EditProfile.jsx'
 import NavBar from './user/edit/navbar.jsx'
 import Footer from './user/edit/footer.jsx'
 import ProductsDetails from './user/ProductDetail.jsx'
+import HomeClinet  from './user/edit/HomePageClient.jsx'
+import HomePageClient from './user/edit/HomePageClient.jsx'
 function App() {
    
 
@@ -25,7 +27,7 @@ function App() {
           <Route path='/updateProfileSeller' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
           <Route path='/ProductDEtails' element={<ProductsDetails/>} />
-
+          <Route path='/HomeClinett' element={<HomePageClient/>} />
      
       </Routes>
       < Footer/>

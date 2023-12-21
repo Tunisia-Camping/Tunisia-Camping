@@ -11,7 +11,7 @@ import LinkedinIcon from '../../assets/Icon-Linkedine.svg'
 
 function Footer() {
     return (
-      <div className="footer">
+      <div className ="footer">
         <div className="FooterContainer">
           <div className="section1">
             <li className="footerTitles">Exclusive</li>

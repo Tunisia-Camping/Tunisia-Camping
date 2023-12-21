@@ -11,7 +11,29 @@ import ReturnIcon from "../assets/icon-delivery.svg";
 import SendIcon from "../assets/icon-delivery.svg"
 function ProductsDetails() {
 const [quantity,setQuantity]=useState(1)
+// const averageRating =
+//     rating.length > 0
+//       ? rating.reduce(
+//           (acc, curr) => acc + curr.rating * 1,
 
+//           0
+//         ) / rating.length
+//       : 0;
+
+//   const renderStars = () => {
+//     const stars = [];
+//     const roundedRating = Math.round(averageRating);
+
+//     for (let i = 0; i < 5; i++) {
+//       if (i < roundedRating) {
+//         stars.push(<Star key={i} style={styles.star} source={Star} />);
+//       } else {
+//         stars.push(<Star key={i} style={styles.star} source={emptyStar} />);
+//       }
+//     }
+
+//     return stars;
+//   }; 
 
   return (
     <div className="ProductDetails">
