@@ -5,7 +5,7 @@ import CreateProduct from './Seller/component/CreateProduct.jsx'
 import SellerOneProduct from './Seller/component/SellerOneProduct.jsx'
 import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
-
+import Cart from './cart/Cart.jsx'
 
 
 function App() {
