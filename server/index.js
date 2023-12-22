@@ -2,6 +2,7 @@ const express = require("express");
 const cors= require ("cors")
 const conn = require("../database-mysql");
 const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
+const SellerRoute = require ("./routes/SellerRoute.js")
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/../react-client/dist"));
 
 app.use("/admin", translateRouteAdmin);
+app.use("/seller", SellerRoute)
 
 
 app.listen(PORT, () => {

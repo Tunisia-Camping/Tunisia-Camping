@@ -1,4 +1,3 @@
-import React from "react";
 import "./cssFiles/Navbar.css"
 import {Link} from 'react-router-dom'
 
@@ -10,9 +9,8 @@ const Navbar=()=>{
         <nav>
           <h1>Tunisia Camping</h1>
         <ul>
-          
               <li>
-                <Link to="/HomePage">Home</Link>
+                <Link to="/Seller">Home</Link>
               </li>
               <li>
                 <Link to="/Profile/:id">Profile</Link>

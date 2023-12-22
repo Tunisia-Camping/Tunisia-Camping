@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Footer=()=>{
     return(
         <div className="Footer">
+          <footer>
           <div className="FooterContainer">
            <div className="Row">
             <div className="column">
@@ -34,6 +35,7 @@ const Footer=()=>{
             </div>
            </div>
           </div>
+          </footer>
         </div>
     )
 }
