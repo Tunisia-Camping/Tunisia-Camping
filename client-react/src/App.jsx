@@ -6,7 +6,8 @@ import CreateProduct from './Seller/component/CreateProduct.jsx'
 import SellerOneProduct from './Seller/component/SellerOneProduct.jsx'
 import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
-import axios from 'axios'
+import Login from './auth/login.jsx'
+import Register from './auth/register.jsx'
 
 
 
@@ -34,10 +35,12 @@ function App() {
 
   return(
     <Routes>
-        <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
-        <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh} />} />
-        <Route path='/:id' element={<SellerOneProduct />} refresh={refresh} setRefresh={setRefresh}/>
-        <Route path='/Profile/:id' element={<Profile/>} />
+        <Route path="/" element={<SellerHome/>} />
+        <Route path='/login' element={ <Login/> } />
+        <Route path='/register' element={ <Register/> } />
+        <Route path='/addProduct' element={<CreateProduct/>} />
+        <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
+        <Route path='/updateProfileSeller' element={<Profile/>} />
         <Route path='/updateProfileClient' element={<EditProfile/>} />
     </Routes>
   )
