@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const AddUser = function (req, res) {
+
   User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -11,7 +12,7 @@ const AddUser = function (req, res) {
     role: req.body.role,
   })
     .then((result) => {
-      res.status(200).send("created");
+      res.status(200).send(result);
     })
     .catch((error) => {
       res.status(500).send(error);
@@ -34,6 +35,7 @@ const generateToken = (id, firstName) => {
 };
 
 const registerUser = async (req, res) => {
+
   const { firstName, lastName, email, password, role } = req.body;
 
   try {
@@ -60,25 +62,20 @@ const loginUser = function (req, res) {
   })
     .then(async (result) => {
       const user = result[0].dataValues;
-      console.log(user);
+   
       const passwordMatch = await bcrypt.compare(
         req.body.password,
         user.password
       );
-      console.log(
-        "passwordMatch: ",
-        passwordMatch,
-        typeof req.body.password,
-        typeof user.password
-      );
+  
       if (passwordMatch) {
-        console.log("user: ", user);
+    
         const token = generateToken(
           user.id,
           user.firstName + " " + user.lastName
         );
-        console.log("token : ", token);
-        res.json({ token, id: user.id });
+ 
+        res.json({ token, id: user.id , email:user.email });
       } else {
         res.status(401).json({ message: "Invalid credentials" });
       }

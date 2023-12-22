@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import { Link} from  'react-router-dom'
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -11,51 +11,54 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Alert from '@mui/material/Alert';
 import axios from "axios"
-import shadows from '@mui/material/styles/shadows';
-
+import { TextField } from '@mui/material';
+import './login.css'
 function Register() {
-  const [name,setName]=useState("")
+  const [FirstName,setFirstName]=useState("")
+  const [LastName,setLastName]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
-  const [role, setRol] =useState('');
+  const [role, setRole] =useState("client");
   const [alert,setAlert]=useState(false)
-  const [verifname,setVerifname]=useState(false)
+  const [verifFirstName,setVerifFirstName]=useState(false)
+  const [verifLastName,setVerifLastName]=useState(false)
+
   const [verifemail,setVerifemail]=useState(false)
   const [verfipass,setVerifpass]=useState(false)
-  axios.defaults.withCredentials=true
 
  
 
-const adduser=(info)=>{
-     let user={
-    name:name,
+const register=()=>{
+     const user={
+    firstName:FirstName,
+    lastName:LastName,
     email:email,
     password:password,
-    rols:role
+    role:role
   }
-  axios.post("http://localhost:3000/auth/",info)
+  console.log(user)
+  axios.post("http://localhost:3000/auth/register",user)
   .then(()=>{
    console.log("user added");
-   setAlert(!alert)
+   setAlert(true)
   })
   .catch((err)=>{
    console.error("error:",err);
+   setAlert(false)
   })
  }
 
 const handleChange = (event) => {
-  setRol(event.target.value);
+  setRole(event.target.value);
+ 
 };
 
-const handleValue=(set,e)=>{
-  set(e.target.value)
-}
 const verif_email=(x)=>{
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(x);
 }
 const verif_name=(x)=>{
-  if(x.length<6){
+  if(x.length<3){
     return false
   }
   return true
@@ -91,19 +94,31 @@ const verif_password = (x) => {
   return verif;
 };
 
-let showname=()=>{
-  if(!verif_name(name)){
-    setVerifname(!verifname)
+let showLastName=()=>{
+ 
+  if(!verif_name(LastName)){
+    console.log("hi");
+    setVerifLastName(true);
     return true
   }
   else{
-    setVerifname(false)
+    setVerifLastName(false)
+    return false
+  }
+}
+let showFirtName=()=>{
+  if(!verif_name(FirstName)){
+    setVerifFirstName(true);
+    return true
+  }
+  else{
+    setVerifFirstName(false)
     return false
   }
 }
 let showemail=()=>{
   if(!verif_email(email)){
-    setVerifemail(!verifemail)
+    setVerifemail(true);
     return true
   }
   else{
@@ -113,7 +128,7 @@ let showemail=()=>{
 }
 let showpass=()=>{
   if(!verif_password(password)){
-    setVerifpass(!verfipass)
+    setVerifpass(true);
     return true
   }
   else{
@@ -140,6 +155,8 @@ let showpass=()=>{
     }
   return (
     <div>
+      <img className='register_img' src="https://i.imgur.com/YmW2J6F.png" alt="" />
+    <div  className='BigDiv_Register'>
       {alert&& <div>
        <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert severity="success">Thank you for your sign-up</Alert>
@@ -156,23 +173,25 @@ let showpass=()=>{
       noValidate
       autoComplete="off"
     >
-      {!verifname&&<div className='input_sign'><TextField  onChange={(e)=>{handleValue(setName,e)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="Name" variant="standard" /></div>}
-      {verifname&&<div className='input_sign'><TextField  error helperText="incorrect entry" onChange={(e)=>{handleValue(setName,e)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="Name"  variant="standard" /></div>}
-      {!verifemail&&<div className='input_sign'><TextField onChange={(e)=>{handleValue(setEmail,e)}} sx={{'& > :not(style)': { width: '50ch' },}} type='email' id="standard-basic" label="Your Email" variant="standard" /></div>}
-      {verifemail&&<div className='input_sign'><TextField error helperText="incorrect email" onChange={(e)=>{handleValue(setEmail,e)}} sx={{'& > :not(style)': { width: '50ch' },}} type='email' id="standard-basic" label="Your Email" variant="standard" /></div>}
-      {!verfipass&&<div className='input_sign'><TextField onChange={(e)=>{handleValue(setPassword,e)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='password' id="standard-basic" label="Password" variant="standard" /></div>}
-      {verfipass&&<div className='input_sign'><TextField error helperText="incorrect password" onChange={(e)=>{handleValue(setPassword,e)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='password' id="standard-basic" label="password" variant="standard" /></div>}
+      {!verifFirstName&&<div className='input_sign'><TextField  onChange={(e)=>{setFirstName(e.target.value)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="FirstName" variant="standard" /></div>}
+      {verifFirstName&&<div className='input_sign'><TextField  onChange={(e)=>{setFirstName(e.target.value)}} error helperText="incorrect entry"   sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="FirstName"  variant="standard" /></div>}
+      {!verifLastName&&<div className='input_sign'><TextField  onChange={(e)=>{setLastName(e.target.value)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="LastName" variant="standard" /></div>}
+      {verifLastName&&<div className='input_sign'><TextField onChange={(e)=>{setLastName(e.target.value)}} error helperText="incorrect entry" sx={{'& > :not(style)': { width: '50ch' },}} type='text' id="standard-basic" label="LastName"  variant="standard" /></div>}
+      {!verifemail&&<div className='input_sign'><TextField onChange={(e)=>{setEmail(e.target.value)}} sx={{'& > :not(style)': { width: '50ch' },}} type='email' id="standard-basic" label="Your Email" variant="standard" /></div>}
+      {verifemail&&<div className='input_sign'><TextField onChange={(e)=>{setEmail(e.target.value)}} error helperText="incorrect email"  sx={{'& > :not(style)': { width: '50ch' },}} type='email' id="standard-basic" label="Your Email" variant="standard" /></div>}
+      {!verfipass&&<div className='input_sign'><TextField onChange={(e)=>{setPassword(e.target.value)}}  sx={{'& > :not(style)': { width: '50ch' },}} type='password' id="standard-basic" label="Password" variant="standard" /></div>}
+      {verfipass&&<div className='input_sign'><TextField onChange={(e)=>{setPassword(e.target.value)}} error helperText="incorrect password"  sx={{'& > :not(style)': { width: '50ch' },}} type='password' id="standard-basic" label="password" variant="standard" /></div>}
     </Box>
     <div className='radio_sign'>
     <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">Your Rol :</FormLabel>
+      <FormLabel id="demo-controlled-radio-buttons-group">Your Role :</FormLabel>
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
         value={role}
-        onChange={handleChange}
+        onChange={(e)=>{handleChange(e)}}
       >
-        <FormControlLabel value="user" control={<Radio />} label="client" />
+        <FormControlLabel value="client" control={<Radio />} label="client" />
         <FormControlLabel value="seller" control={<Radio />} label="seller" />
       </RadioGroup>
     </FormControl>
@@ -181,12 +200,13 @@ let showpass=()=>{
         <div>
         <Stack >
             <Button onClick={()=>{    
-              if(showname()===false&&showemail()===false&&shadows()===false){
-                adduser(info)
+              if(showLastName()===false&&showFirtName()===false&&showemail()===false){
+                register()
               }
               else{
-                showname();
-                showemail();
+                showFirtName()
+                showLastName()
+                showemail()
                 showpass()
               }
               }} style={sty}>Create Account</Button>
@@ -195,7 +215,8 @@ let showpass=()=>{
         <Button   style={sty2}   startIcon={<GoogleIcon/>}>Sign up with Google</Button>
         </Stack>
         </div>
-        <p className='parag_sign'>Already have account? <a onClick={()=>{}} className='link_sign' >Log in</a></p>
+        <p className='parag_sign'>Already have account? <a onClick={()=>{}} className='link_sign' ><Link to={'/login'}>Log in</Link></a></p>
+    </div>
     </div>
   )
 }
