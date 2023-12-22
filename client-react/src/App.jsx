@@ -11,6 +11,7 @@ import EditProfile from './user/edit/EditProfile.jsx'
 function App() {
   return(
     <Routes>
+              <Route path="/cart" element={<Cart/>} />
         <Route path="/" element={<SellerHome/>} />
         <Route path='/addProduct' element={<CreateProduct/>} />
         <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
