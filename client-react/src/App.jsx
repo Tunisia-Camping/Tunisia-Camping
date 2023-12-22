@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { Link,useNavigate } from "react-router-dom";
 import './App.css'
 import SellerHome from './Seller/component/SellerHome.jsx'
 import CreateProduct from './Seller/component/CreateProduct.jsx'
@@ -11,6 +12,11 @@ import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
 function App() {
    
+  const navigate = useNavigate();
+
+  const handleClick = (product) => {
+    navigate(`/${product.name}`, { state: product });
+  };
 
   return (
     
@@ -25,8 +31,8 @@ function App() {
           <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
           <Route path='/updateProfileSeller' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
-          <Route path='/ProductDetails' element={<ProductsDetails/>} />
-          <Route path='/Home' element={<Home/>} />
+          <Route path='/:name' element={<ProductsDetails/>} />
+          <Route path='/Home' element={<Home handleClick={handleClick}  />} />
      
       </Routes>
       {/* < Footer/> */}

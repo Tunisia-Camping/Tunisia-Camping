@@ -1,17 +1,16 @@
 import "./Home.css";
 import React, {useEffect, useState} from "react";
-import { Link,useNavigate } from "react-router-dom";
-import iphone from "../../assets/iphone.jpg"
+import camping from "../../assets/camping.jpg"
 import axios from "axios"
 import Star from "../../assets/Vector.svg";
 
  
 
- function Home(){
+ function Home({handleClick}){
   const [data, setData] = useState([]);
   console.log(data);
   const [showAllProducts, setShowAllProducts] = useState(false);
-  const navigate = useNavigate();
+
   
   const ByCategory = async (category) => {
     try {
@@ -24,9 +23,7 @@ import Star from "../../assets/Vector.svg";
     }
   };
 
-  const handleClick = (product) => {
-    navigate("/ProductDetails", { state: product });
-  };
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -50,15 +47,15 @@ import Star from "../../assets/Vector.svg";
     <div  className="category">
 <h4  onClick={()=>{ByCategory("Tent")}}>Tent</h4>
 <h4  onClick={()=>{ByCategory("Sleeping bags")}}>Sleeping bags</h4>
-<h4>Camping pillow</h4>
-<h4>flashlights</h4>
-<h4>Camp chairs</h4>
-<h4>Camp table</h4>
+<h4 onClick={()=>{ByCategory("Camping pillow")}}>Camping pillow</h4>
+<h4 onClick={()=>{ByCategory("flashlights")}}>flashlights</h4>
+<h4 onClick={()=>{ByCategory("Camp chairs")}}>Camp chairs</h4>
+<h4 onClick={()=>{ByCategory("Camp chairs")}} >Camp table</h4>
 <h4>Lantern</h4>
 
     </div>
     <div className="pub">
-<img    style={{width:"90rem",height:"400px"}} src={iphone }alt="" />
+{ <img    style={{width:"90rem",height:"400px"}} src={ camping }alt="" /> }
     </div>
   </div>
 
