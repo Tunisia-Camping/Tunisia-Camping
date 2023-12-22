@@ -1,0 +1,25 @@
+.BigDiv_Login {
+    position: absolute;
+    top: 30%;
+    left: 60%;
+}
+.BigDiv_Register {
+    position: absolute;
+    
+    left: 60%;
+}
+.login_img {
+    position: absolute;
+    bottom: -1%;
+    left: -1%;
+    width: 800px;
+    height: 710px;
+}
+
+.register_img{
+    position: absolute;
+    bottom: -1%;
+    left: -1%;
+    width: 800px;
+    height: 710px;
+}
