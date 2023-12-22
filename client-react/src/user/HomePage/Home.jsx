@@ -1,6 +1,5 @@
 import "./Home.css";
 import React, {useEffect, useState} from "react";
-import camping from "../../assets/camping.jpg"
 import axios from "axios"
 import Star from "../../assets/Vector.svg";
 
@@ -55,7 +54,7 @@ import Star from "../../assets/Vector.svg";
 
     </div>
     <div className="pub">
-{ <img    style={{width:"90rem",height:"400px"}} src={ camping }alt="" /> }
+{ <img    style={{width:"1000px",height:"500px"}} src="https://i.imgur.com/G0GeFGh.png"alt="" /> }
     </div>
   </div>
 

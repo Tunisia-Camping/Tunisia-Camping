@@ -2,11 +2,7 @@ import "./ProductDetails.css";
 import React, { useState } from "react";
 import { Link,useLocation } from "react-router-dom";
 
-import Ps5Controller from "../assets/googlePlay.png";
-import Ps5Controller1 from "../assets/googlePlay.png";
-import Ps5Controller2 from"../assets/googlePlay.png";
-import Ps5Controller3 from"../assets/googlePlay.png";
-import Ps5Controller4 from"../assets/googlePlay.png";
+
 import Star from "../assets/Vector.svg";
 import WishListIcon from "../assets/Wishlist.svg";
 import ReturnIcon from "../assets/icon-delivery.svg";

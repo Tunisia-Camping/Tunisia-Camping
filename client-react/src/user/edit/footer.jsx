@@ -2,7 +2,7 @@ import "./Footer.css";
 import React from "react";
 import CodeQR from "../../assets/codeQR.jpg";
 import GooglePlay from "../../assets/googleplay.svg";
-import AppStore from "../../assets/AppStore.svg";
+
 import iconSend from "../../assets/icon-send.svg";
 import FacebookIcon from '../../assets/Icon-Facebook.svg'
 import TweeterIcon from '../../assets/Group.svg'
