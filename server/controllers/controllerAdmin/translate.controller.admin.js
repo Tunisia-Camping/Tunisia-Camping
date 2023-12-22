@@ -58,6 +58,7 @@ module.exports.addProduct=(async(req,res)=>{
     res.status(500).json(err)
   }
 });
+
 module.exports.updateProduct=(async(req,res)=>{
 
   const{name,price,description,unit,category,images}=req.body
