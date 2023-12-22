@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom'
+
+import React from 'react' 
+import {  Routes , Route } from 'react-router-dom'
 import { Link,useNavigate } from "react-router-dom";
 import './App.css'
 import SellerHome from './Seller/component/SellerHome.jsx'
@@ -6,6 +8,8 @@ import CreateProduct from './Seller/component/CreateProduct.jsx'
 import SellerOneProduct from './Seller/component/SellerOneProduct.jsx'
 import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
+import Login from './auth/login.jsx'
+import Register from './auth/register.jsx'
 import NavBar from './user/edit/navbar.jsx'
 import Footer from './user/edit/footer.jsx'
 import ProductsDetails from './user/ProductDetail.jsx'
@@ -27,7 +31,9 @@ function App() {
          <Routes>
     
       <Route path="/" element={<SellerHome/>} />
-          <Route path='/addProduct' element={<CreateProduct/>} />
+          <Route path='/login' element={ <Login/> } />
+        <Route path='/register' element={ <Register/> } />
+        <Route path='/addProduct' element={<CreateProduct/>} />
           <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
           <Route path='/updateProfileSeller' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
