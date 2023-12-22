@@ -4,8 +4,10 @@ const controller = require("../../controllers/controllerAdmin/translate.controll
 translateRoute.get("/getAllClients", controller.getAllClients);
 translateRoute.get("/getAllSellers", controller.getAllSellers);
 translateRoute.get("/getAllProducts", controller.getAllProducts);
-translateRoute.post("/addCategory", controller.addCategory);
-translateRoute.put("/updateCategory", controller.updateCategory);
+translateRoute.post("/addProduct", controller.addProduct);
+translateRoute.put("/updateProduct/:id", controller.updateProduct);
+translateRoute.delete("/deleteProduct/:id", controller.deleteProduct);
+
 
 
 module.exports = translateRoute;
