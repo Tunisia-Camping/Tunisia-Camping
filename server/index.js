@@ -6,7 +6,6 @@ const translateRoutewishList = require("./routes/wishListRoute");
 const translateRouteClient1= require("./routes/Client1");
 const translateRouteCart = require("./routes/CartRoute");
 const translateRouteAuth = require("./routes/LoginAndResigter.routes/authRouters.js");
-const SellerRoute = require ("./routes/SellerRoute.js")
 
 const app = express();
 app.use(express.json());
@@ -18,10 +17,6 @@ const PORT = 3000;
 app.use(cors());
 app.use("/auth", translateRouteAuth);
 app.use("/admin", translateRouteAdmin);
-app.use("/Cart", translateRouteCart);
-app.use("/Client1", translateRouteClient1);
-app.use("/wishList", translateRoutewishList);
-app.use("/seller", SellerRoute)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
