@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0e0e0e;
+    padding: 10px;
+    font-family: 'poppins', sans-serif;
+    color: rgb(231, 222, 222);
+  }
+  
+  .centered {
+    display: flex;
+    align-items: center;
+  }
+  
+  .line {
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .header-sections {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-sections div {
+    margin: 0 10px;
+  }
+  
+  .header-search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-search input {
+    margin-right: 5px;
+  }
+  
+  .header-cart,
+  .header-wishlist {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-cart span,
+  .header-wishlist span {
+    margin-right: 5px;
+  }
+  

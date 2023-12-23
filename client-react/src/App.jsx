@@ -12,7 +12,7 @@ import AdminPage from './admin/AdminPage.jsx'
 import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
-
+import Cart from './cart/Cart.jsx'
 function App() {
    
 
@@ -59,7 +59,7 @@ function App() {
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
-     
+          <Route path='/Cart' element={<Cart/>} />
       </Routes>
       
       </div>
