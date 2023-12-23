@@ -1,9 +1,5 @@
-
-import React from 'react' 
 import {useEffect, useState} from 'react'
-import {  Routes , Route , Link , useNavigate } from 'react-router-dom'
-
-
+import {  Routes , Route , useNavigate } from 'react-router-dom'
 import './App.css'
 import SellerHome from './Seller/component/SellerHome.jsx'
 import CreateProduct from './Seller/component/CreateProduct.jsx'
@@ -14,7 +10,6 @@ import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
 import AdminPage from './admin/AdminPage.jsx'
 import axios from 'axios'
-import NavBar from './user/edit/navbar.jsx'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
 
@@ -52,7 +47,7 @@ function App() {
       <div> 
         
         
-        < NavBar/>
+       
          <Routes>
          <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
