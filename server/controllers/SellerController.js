@@ -43,7 +43,7 @@ const updateProduct = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Product.destroy(req.params.id)
+  Product.destroy({where:{id:req.params.id}})
   .then((result)=>{
    res.status(200).send("product removed")
   })

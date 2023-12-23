@@ -65,7 +65,7 @@ import Star from "../../assets/Vector.svg";
   
   <img   onClick={()=>{
     handleClick(product)
-  }} src={product.images[2].url} alt={product.name} />
+  }} src={product.images[0].url }/>
 
            <div className="Details">
             <p id="Product_Title">{product.name}</p>

@@ -1,11 +1,9 @@
+const { User, Product } = require("../../../database-mysql/index");
+const bcrypt = require('bcrypt');
 
+module.exports = {
 
-const {User,Product } = require("../../../database-mysql/index");
-
-
-module.exports={
-
-      UpdateClients:async (req,res)=>{
+  checkpassword:async (req,res)=>{
           try {
               const userInfo = await User.findOne({
                 where: {
@@ -19,27 +17,34 @@ module.exports={
                   message: 'User not found',
                 });
               }
-  
-              const isPasswordValid = await bcrypt.compare(req.body.currentPassword, userInfo.password);
-  
+console.log(req.body.currentPassword,"currentr")
+console.log(userInfo.password,"user")
+              const isPasswordValid =  bcrypt.compare(req.body.currentPassword, userInfo.password);
+
               if (!isPasswordValid) {
+
+          
+                console.log("hi")
                 return res.status(401).json({
                   status: 'error',
                   message: 'Incorrect current password',
                 });
               }
+              console.log(req.body.newPassword,"new")
+
   
               const hashedNewPassword = await bcrypt.hash(req.body.newPassword, 10);
-  
+              console.log(hashedNewPassword,"body")
+
               await User.update({
                 firstName: req.body.firstName,
                 email: req.body.email,
                 password: hashedNewPassword,
-                lastName: req.body.lastName,
-                adress:req.body.adress
-                
+                    adress:req.body.adress,
+                    lastName:req.body.lastName
+
               }, {
-                where: { email: userInfo.email }
+                where: { id: userInfo.id }
               });
   
               res.json({
@@ -49,27 +54,29 @@ module.exports={
                   user: userInfo,
                 },
               });
+
+              console.log("body")
+
+              console.log("hi")
             } catch (error) {
-              console.error(error);
-              res.status(500).json({
-                status: 'error',
-                message: 'Internal server error',
-              });
+         throw error
             }
   
         },
-   ByCategory: async (req, res) => {
-  try {
-    const result = await Product.findAll({where:{ category: req.params.category }});
-    if (result) {
-      res.status(200).send(result);
-    } else {
-      res.status(404).send({ message: "Product not found in the specified category" });
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ message: "Internal Server Error" });
-  }
-}
-      
+
+  ByCategory: async (req, res) => {
+    try {
+      const result = await Product.findAll({ where: { category: req.params.category } });
+      if (result) {
+        res.status(200).send(result);
+      } else {
+        res.status(404).send({ message: "Product not found in the specified category" });
       }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ message: "Internal Server Error" });
+    }
+  },
+
+
+};

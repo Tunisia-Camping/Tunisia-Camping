@@ -21,11 +21,11 @@ console.log(location.state,"ee")
           <div className="vertical_gallery">
             <img src={product.images[0].url} alt="" />
             <img src={product.images[1].url}alt="" />
-            <img src={product.images[2].url} alt="" />
+            <img src={product.images[1].url} alt="" />
             <img src={product.images[0].url} alt="" />
           </div>
           <div className="main_product">
-            <img src={product.images[2].url} alt="" />
+            <img src={product.images[0].url} alt="" />
           </div>
         </div>
         <div className="ProductDetails_Info">
@@ -73,7 +73,6 @@ console.log(location.state,"ee")
           </div>
           <div className="shipping">
             <div className="rect1">
-              <img src={ReturnIcon} alt="" />
               <div className="containerr">
                 <p id="free">Free Delivery</p>
                 <p id="free_desc">
@@ -82,7 +81,6 @@ console.log(location.state,"ee")
               </div>
             </div>
             <div className="rect2">
-              <img src={SendIcon} alt="" />
               <div className="containerr">
                 <p id="return">Return Delivery</p>
                 <p id="return_desc">
