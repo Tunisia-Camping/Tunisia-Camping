@@ -8,6 +8,7 @@ import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
 import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
+import axios from 'axios'
 
 
 
@@ -21,11 +22,12 @@ function App() {
   useEffect(()=>{
     axios.get("http://localhost:3000/seller/getAll").then((res)=>{
      setProducts(res.data)
+     setRefresh(!refresh)
     })
     .catch((err)=>{
       console.log(err)
     })
-  },[])
+  },[refresh])
 
   
 
@@ -35,12 +37,12 @@ function App() {
 
   return(
     <Routes>
-        <Route path="/" element={<SellerHome/>} />
+        <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
         <Route path='/login' element={ <Login/> } />
         <Route path='/register' element={ <Register/> } />
-        <Route path='/addProduct' element={<CreateProduct/>} />
-        <Route path='/SellerOneProduct/:id' element={<SellerOneProduct/>} />
-        <Route path='/updateProfileSeller' element={<Profile/>} />
+        <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
+        <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
+        <Route path='/SellerProfile/:id' element={<Profile/>} />
         <Route path='/updateProfileClient' element={<EditProfile/>} />
     </Routes>
   )

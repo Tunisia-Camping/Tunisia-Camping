@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const Navbar=()=>{
     return(
         <div>
-<header>
+<header> 
         <nav>
           <h1>Tunisia Camping</h1>
         <ul>
@@ -13,7 +13,7 @@ const Navbar=()=>{
                 <Link to="/Seller">Home</Link>
               </li>
               <li>
-                <Link to="/Profile/:id">Profile</Link>
+                <Link to="/SellerProfile/:id">Profile</Link>
               </li>
               <li>
                 <Link to="/addProduct">Create Product</Link>

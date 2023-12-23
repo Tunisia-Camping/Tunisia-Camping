@@ -12,7 +12,7 @@ const SellerHome=({products,showProduct})=>{
     <div className="AllProduct">
       {products.map((el,i)=>(
           <div key={i}>
-       <img className="" src={el.images} alt="" />
+       <img className="" src={el.images} alt={el.name} />
         <h4 onClick={()=>{showProduct(el)}}>{el.name}</h4>
         <div>{el.price}</div>
         </div>

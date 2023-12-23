@@ -34,7 +34,8 @@ const Profile=()=>{
       }
 
       const modifyProfile=(id)=>{
-        axios.put(`http://localhost:3000/seller/updateProfile/${id}`,obj).then(()=>{
+        axios.put(`http://localhost:3000/seller/updateProfile/${id}`,obj).then((res)=>{
+          setProfile(res.data)
           alert("Profile Modified")
         })
         .catch((err)=>{

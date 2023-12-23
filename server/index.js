@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const conn = require("../database-mysql");
 const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
-const translateRouteAuth = require("./routes/LoginAndResigter.routes/authRouters.js");const SellerRoute = require ("./routes/SellerRoute.js")
+const translateRouteAuth = require("./routes/LoginAndResigter.routes/authRouters.js");
+const SellerRoute = require ("./routes/SellerRoute.js")
 
 
 const app = express();

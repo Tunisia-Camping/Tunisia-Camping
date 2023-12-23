@@ -1,18 +1,15 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Stack, TextField, Select, MenuItem, Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import Navbar from "./Navbar";
+// import DeleteIcon from '@mui/icons-material/Delete';
+import "./cssFiles/SellerOneProduct.css"
+import UpdateProduct from "./UpdateProduct";
 
-const SellerOneProduct=({refresh, setRefresh})=>{
-    const [oneProduct, setOneProduct] = useState({})
-    const [name, setName] = useState("")
-    const [price, setPrice] = useState (0)
-    const [description, setDescription] = useState("")
-    const [unit, setUnit] = useState(0)
-    const [category, setCategory] = useState("Tent")
-    const [images, setImages] = useState("")
-    const[show, setShow]= useState(false)
+const SellerOneProduct=()=>{
+  const [oneProduct, setOneProduct] = useState({})
+    const [show, setShow] = useState(false)
     const {id}= useParams()
     const navigate= useNavigate()
    
@@ -28,36 +25,6 @@ const SellerOneProduct=({refresh, setRefresh})=>{
     })
     },[id])
 
-    // const uploadImage=()=>{
-    //   const formData= new formData()
-    //   formData.append("file",images)
-    //   formData.append("upload_preset","pa4ezjqw")
-    
-    //   axios.post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
-    //   .then((res)=>{
-    //     console.log(res)
-    //   })
-    // }
-
-    const obj={
-        name:name,
-        price:price,
-        description:description,
-        unit:unit,
-        category:category,
-        images:JSON.stringify(images)
-    }
-
-    const modify=(id)=>{
-        console.log(obj)
-        axios.put(`http://localhost:3000/seller/updateProduct/${id}`,obj).then(()=>{
-          alert("Product Modified")
-          setRefresh(!refresh)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
 
     const remove=(id)=>{
         axios.delete(`http://localhost:3000/seller/removeProduct/${id}`).then(()=>{
@@ -72,109 +39,35 @@ const SellerOneProduct=({refresh, setRefresh})=>{
  return(
     <div>
       <Navbar/>
-        <div>
+        <div className="product-container">
         <img className="" src={oneProduct.images} alt="" />
         <h4>{oneProduct.name}</h4>
-        <div>{oneProduct.price}</div>
-        <div>{oneProduct.description}</div>
-        <div>{oneProduct.unit}</div>
-        <div>{oneProduct.category}</div>
-        <button
-        className="Delete"
-        onClick={() => {
-            remove(oneProduct.id)
-        }}
-      >
-       Delete
+        <div>
+        <div>Price:{oneProduct.price}</div>
+        <div>Description:{oneProduct.description}</div>
+        <div>Unit:{oneProduct.unit}</div>
+        </div>
+      <button className="delete-button" 
+      onClick={() => {
+        remove(oneProduct.id)
+    }}>
+        <svg className="delete-svgIcon" viewBox="0 0 448 512">
+                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                  </svg>
       </button>
-      <button
-        className="Modify"
-        onClick={() => {
+      <button className="edit-button" 
+      onClick={() => {
         setShow(!show)
         }}
       >
-        Modify
+         <svg className="edit-svgIcon" viewBox="0 0 512 512">
+                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                  </svg>
       </button>
-      </div>
-      {show&&(
-      <Box 
-      display="flex" 
-      justifyContent="center" 
-      alignItems="center" 
-    >
-            <Stack
-      component="form"
-      sx={{
-        width: '50ch',
-      }}
-      spacing={2}
-      noValidate
-      autoComplete="off"
-      id="inputs"
-    >
-       
-      <TextField
-        hiddenLabel
-        id="filled-hidden-label-small"
-        defaultValue="Product Name"
-        variant="filled"
-        size="small"
-        onChange={(e)=>setName(e.target.value)}
-      />
-      
-      <TextField
-        hiddenLabel
-        id="filled-hidden-label-small"
-        defaultValue="Product Price"
-        variant="filled"
-        size="small"
-        onChange={(e)=>setPrice(e.target.value)}
-      />
-      <TextField
-        hiddenLabel
-        id="filled-hidden-label-small"
-        defaultValue="description"
-        variant="filled"
-        size="small"
-        onChange={(e)=>setDescription(e.target.value)}
-      />
-      <TextField
-        hiddenLabel
-        id="filled-hidden-label-small"
-        defaultValue="How many product you have"
-        variant="filled"
-        size="small"
-        onChange={(e)=>setUnit(e.target.value)}
-      />
-       <Select
-      variant="outlined"
-      value={category}
-      sx={{
-        width: '400px',               
-        borderRadius: '8px',          
-        borderColor: '#ccc',         
-        '&:focus': {
-          borderColor: '#00bcd4',     
-          outline: 'none'             
-        }
-      }}
-      onChange={(e)=> setCategory(e.target.value)}
-    >
-      <MenuItem value="Tent">Tent</MenuItem>
-      <MenuItem value="Sleepingbags">Sleeping bags</MenuItem>
-      <MenuItem value="Campingpillow">Camping pillow</MenuItem>
-      <MenuItem value="flashlights">flashlights</MenuItem>
-      <MenuItem value="Campchairs">Camp chairs</MenuItem>
-      <MenuItem value="Camptable">Camp table</MenuItem>
-      <MenuItem value="Lantern">Lantern</MenuItem>
-    </Select>
-    <input type="file" onChange={(e)=>{setImages(e.target.files)}}/>
-    <Button variant="contained" onClick={()=>{modify(oneProduct.id)}}>
-        Update
-      </Button>
-            </Stack>
-            </Box>
-)}
+      {show&&
+      <UpdateProduct oneProduct={oneProduct}/>
+    }
+    </div>
     </div>
  )
 }

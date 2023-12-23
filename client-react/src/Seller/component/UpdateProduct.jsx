@@ -1,67 +1,41 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom"
-import Navbar from "./Navbar";
+import { useState } from "react"
+import "./cssFiles/UpdateProduct.css"
 import axios from "axios"
-import "./cssFiles/CreateProduct.css"
 
 
-
-const CreateProduct=({refresh, setRefresh})=>{
-const [name, setName] = useState("")
-const [price, setPrice] = useState (0)
-const [description, setDescription] = useState("")
-const [unit, setUnit] = useState(0)
-const [category, setCategory] = useState("Tent")
-const [imgUrl, setImgUrl] = useState("")
-const navigate = useNavigate()
- 
-const addProduct=(e)=>{
-  const file=e.target.files[0]
-  const formData = new FormData();
-
-  formData.append("file",file)
-  formData.append("upload_preset","pa4ezjqw");
-  axios.post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
-  .then((res)=>{
-    console.log("secure",res.data.secure_url);
-   setImgUrl(res.data.secure_url)
-   console.log("url",imgUrl)
-  })
-  .catch((err)=>{
-    console.log(formData);
-    console.log(err)
-  })
-
-  
-
-}
-const obj={
-  name:name,
-  price:price,
-  description:description,
-  unit:unit,
-  category:category,
-  images: imgUrl
-}
-const add=()=>{
-  axios.post("http://localhost:3000/seller/addProduct",obj).then(()=>{
-  console.log(obj);
-  alert("Product added")
-  setRefresh(!refresh)
-  navigate("/Seller")
-  })
-  .catch((err)=>{
-   console.log (err)
-  })}
-
+const UpdateProduct=({oneProduct})=>{
     
-    return(
-      <div>
-        <div>
-        <Navbar/>
-        </div>
-      <div className="container">
-          <h2>Create New Product</h2>
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState (0)
+    const [description, setDescription] = useState("")
+    const [unit, setUnit] = useState(0)
+    const [category, setCategory] = useState("Tent")
+    const [refresh, setRefresh] = useState(false)
+    
+    
+   
+    const obj={
+        name:name,
+        price:price,
+        description:description,
+        unit:unit,
+        category:category,
+    }
+
+    const modify=(id)=>{
+        console.log(obj)
+        axios.put(`http://localhost:3000/seller/updateProduct/${id}`,obj).then(()=>{
+          alert("Product Modified")
+          setRefresh(!refresh)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    return (
+        <div className="container">
+          <h2>Update Product Details</h2>
           <form >
           <div className="form-group">
               <label>Product Name:</label>
@@ -110,14 +84,10 @@ const add=()=>{
             <option value="Lantern">Lantern</option>
            </select>
             </div>
-            <input type="file" onChange={(e)=>addProduct(e)}/>
-    <button onClick={()=>{add(obj)}}>
-        Add Product
-      </button>
+            <button type="submit" onClick={()=>{modify(oneProduct.id)}}>Update Product</button>
           </form>
-        </div>
         </div>
       );
 }
 
-export default CreateProduct
+export default UpdateProduct
