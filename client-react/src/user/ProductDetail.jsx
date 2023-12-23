@@ -7,6 +7,7 @@ import Star from "../assets/Vector.svg";
 import WishListIcon from "../assets/Wishlist.svg";
 import ReturnIcon from "../assets/icon-delivery.svg";
 import SendIcon from "../assets/icon-delivery.svg"
+import NavBar from "./edit/navbar"
 function ProductsDetails() {
 const [quantity,setQuantity]=useState(1)
 const location = useLocation();
@@ -15,7 +16,10 @@ console.log(location.state,"ee")
 
 
   return (
+    <div>
+       <NavBar/>
     <div className="ProductDetails">
+
       <div className="ProductDetails_header">
         <div className="ProductDetails_gallery">
           <div className="vertical_gallery">
@@ -92,6 +96,7 @@ console.log(location.state,"ee")
         </div>
       </div>
  
+    </div>
     </div>
   );
 }
