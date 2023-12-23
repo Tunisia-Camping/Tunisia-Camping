@@ -1,0 +1,130 @@
+
+
+.startOfthepage{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:flex-start;
+  padding: 10rem;
+}
+.category{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 200px;
+}
+/* .homePage{
+margin: 400px
+} */
+
+.productContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  /* Add any styling for the product container here */
+}
+
+.productCard {
+  width: 250px;
+  text-align: center;
+  border: 1px solid #f1e2e2;
+  padding: 10px;
+  border-radius: 2px;
+  margin: 10px;
+  /* Add any styling for individual product cards here */
+}
+
+.productCard img {
+  max-width: 100%;
+  height: auto;
+}
+
+.productCard h3 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.productCard p {
+  font-size: 14px;
+  color: #4a3939;
+  margin-top: 5px;
+}
+
+.productCard a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+.description{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+#price {
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 100% */
+  letter-spacing: 0.72px;
+  margin: 0;
+  color: red;
+}
+
+#description {
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  width: 100%;
+}
+
+.Details_reviews {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+  
+#Product_Title {
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.72px;
+  margin: 0;
+}
+
+#reviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+#add {
+  display: inline-flex;
+  padding: 10px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #db4444;
+  border: none;
+  border-radius: 4px;
+  color: var(--Text, #fafafa);
+  /* Title/16PX Medium */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+}
