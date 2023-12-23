@@ -1,9 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom";
-// import { Button } from '@mui/material';
 import Navbar from "./Navbar";
-// import DeleteIcon from '@mui/icons-material/Delete';
 import "./cssFiles/SellerOneProduct.css"
 import UpdateProduct from "./UpdateProduct";
 

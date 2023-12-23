@@ -1,19 +1,18 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom"
 import Navbar from "./Navbar";
 import axios from "axios"
 import "./cssFiles/CreateProduct.css"
 
 
 
-const CreateProduct=({refresh, setRefresh})=>{
+const CreateProduct=()=>{
 const [name, setName] = useState("")
 const [price, setPrice] = useState (0)
 const [description, setDescription] = useState("")
 const [unit, setUnit] = useState(0)
 const [category, setCategory] = useState("Tent")
 const [imgUrl, setImgUrl] = useState("")
-const navigate = useNavigate()
+
  
 const addProduct=(e)=>{
   const file=e.target.files[0]
@@ -45,10 +44,7 @@ const obj={
 }
 const add=()=>{
   axios.post("http://localhost:3000/seller/addProduct",obj).then(()=>{
-  console.log(obj);
   alert("Product added")
-  setRefresh(!refresh)
-  navigate("/Seller")
   })
   .catch((err)=>{
    console.log (err)
@@ -60,10 +56,10 @@ const add=()=>{
         <div>
         <Navbar/>
         </div>
-      <div className="container">
+      <div className="create">
           <h2>Create New Product</h2>
           <form >
-          <div className="form-group">
+          <div className="group">
               <label>Product Name:</label>
               <input
                 type="text"
@@ -72,7 +68,7 @@ const add=()=>{
               />
             </div>
          
-            <div className="form-group">
+            <div className="group">
               <label>Price:</label>
               <input
                 type="number"
@@ -81,7 +77,7 @@ const add=()=>{
               />
             </div>
     
-            <div className="form-group">
+            <div className="group">
               <label>Description:</label>
               <textarea
                 value={description}
@@ -89,7 +85,7 @@ const add=()=>{
               ></textarea>
             </div>
     
-            <div className="form-group">
+            <div className="group">
               <label>Unit:</label>
               <input
                 type="number"
@@ -98,7 +94,7 @@ const add=()=>{
               />
             </div>
     
-            <div className="form-group">
+            <div className="group">
            <label>Category:</label>
            <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="Tent">Tent</option>
@@ -110,10 +106,13 @@ const add=()=>{
             <option value="Lantern">Lantern</option>
            </select>
             </div>
+            <div>
             <input type="file" onChange={(e)=>addProduct(e)}/>
-    <button onClick={()=>{add(obj)}}>
-        Add Product
-      </button>
+            </div>
+            <button className="btn"onClick={()=>{add(obj)}}>
+            <span className="btn-text-one">Update Product</span>
+            <span className="btn-text-two">Click Now!</span>
+            </button>
           </form>
         </div>
         </div>
