@@ -1,5 +1,5 @@
 import "./Home.css";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios"
 import Star from "../../assets/Vector.svg";
 import NavBar from '../edit/navbar'
