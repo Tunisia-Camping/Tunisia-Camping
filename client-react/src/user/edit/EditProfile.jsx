@@ -4,6 +4,8 @@ import React, { useState , useEffect} from "react";
 import Cookies from 'js-cookie';
 import "./EDIT.css"
 import axios from "axios"
+import NavBar from './navbar'
+
 const EditProfile = () => {
   
 const [firstName,setFirstName]=useState("")
@@ -72,6 +74,11 @@ console.log(err)
 
 
   return (
+
+
+
+    <div>
+    <NavBar/>
     <div className="account">
    
    
@@ -146,6 +153,7 @@ console.log(err)
         </div>
       </div>
 
+    </div>
     </div>
   );
 };
