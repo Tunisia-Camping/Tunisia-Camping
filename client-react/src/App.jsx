@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import {  Routes , Route , useNavigate } from 'react-router-dom'
 import './App.css'
 import SellerHome from './Seller/component/SellerHome.jsx'
 import CreateProduct from './Seller/component/CreateProduct.jsx'
@@ -9,14 +9,16 @@ import EditProfile from './user/edit/EditProfile.jsx'
 import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
 import axios from 'axios'
-
-
+import NavBar from './user/edit/navbar.jsx'
+import ProductsDetails from './user/ProductDetail.jsx'
+import Home from './user/HomePage/Home.jsx'
 
 function App() {
+   
 
- const [products, setProducts] = useState([])
- const [refresh, setRefresh] = useState(false)
- const navigate = useNavigate()
+  const [products, setProducts] = useState([])
+  const [refresh, setRefresh] = useState(false)
+  const navigate = useNavigate();
 
 
   useEffect(()=>{
@@ -35,16 +37,37 @@ function App() {
       navigate(`/${newData.id}`)   
   }
 
-  return(
-    <Routes>
-        <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
-        <Route path='/login' element={ <Login/> } />
+
+  const handleClick = (product) => {
+    navigate(`/one/${product.name}`, { state: product });
+  };
+
+  return (
+    
+      <div> 
+        
+        
+        < NavBar/>
+         <Routes>
+    
+         <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
+          <Route path='/login' element={ <Login/> } />
         <Route path='/register' element={ <Register/> } />
         <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
         <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
-        <Route path='/SellerProfile/:id' element={<Profile/>} />
-        <Route path='/updateProfileClient' element={<EditProfile/>} />
-    </Routes>
+          <Route path='/updateProfileSeller' element={<Profile/>} />
+          <Route path='/updatePDrofileClient' element={<EditProfile/>} />
+          <Route path='/one/:name' element={<ProductsDetails/>} />
+          <Route path='/Home' element={<Home handleClick={handleClick}  />} />
+     
+      </Routes>
+      {/* < Footer/> */}
+      </div>
+
+      
+     
+      
+   
   )
     
 }
