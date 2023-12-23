@@ -1,11 +1,8 @@
-
-
 import "./NavBar.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CartIcon from "../../assets/Cart1.svg";
 import WishListIcon from "../../assets/Wishlist.svg";
-import axios from "axios";
 
 export default function NavBar() {
   const location = useLocation();
@@ -66,9 +63,9 @@ export default function NavBar() {
             <li>
               <Link
                 className={`link ${
-                  location.pathname === "/singup" ? "active" : ""
+                  location.pathname === "/login" ? "active" : ""
                 }`}
-                to="/singup"
+                to="/login"
               >
                 Sign Up
               </Link>
