@@ -37,7 +37,7 @@ export default function NavBar() {
           <ul className="NavLinks">
             <li>
               <Link
-                className={`link ${location.pathname === "/" ? "active" : ""}`}
+                className={`link ${location.pathname === "/Home" ? "active" : ""}`}
                 to="/"
               >
                 Home

@@ -1,12 +1,23 @@
-import React from "react";
 import Navbar from './Navbar.jsx'
-import Footer from './Footer.jsx'
 
-const SellerHome=()=>{
+
+
+const SellerHome=({products,showProduct})=>{
+
+
+    
     return(
     <div>
     <Navbar/>
-    <Footer/>
+    <div className="AllProduct">
+      {products.map((el,i)=>(
+          <div key={i}>
+       <img className="" src={el.images} alt={el.name} />
+        <h4 onClick={()=>{showProduct(el)}}>{el.name}</h4>
+        <div>{el.price}</div>
+        </div>
+))}
+    </div>
     </div>
     )
  

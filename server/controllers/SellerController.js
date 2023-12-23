@@ -10,6 +10,18 @@ const getAll = (req, res) => {
  })
 };
 
+
+
+const oneProduct = (req, res) => {
+  Product.findOne({where:{id:req.params.id}})
+  .then((result)=>{
+     res.status(200).send(result)
+  })
+  .catch((err)=>{
+   res.status(500).send(err)
+  })
+ };
+
 const add = (req, res) => {
  Product.create({
    name:req.body.name,
@@ -34,9 +46,9 @@ const updateProduct = (req, res) => {
    unit:req.body.unit,
    category:req.body.category,
    images:req.body.images
- })
+ }, {where:{id:req.params.id}})
  .then((result)=>{
-   res.status(200).send("Product created")
+   res.status(200).send("Product updated")
  })
  .catch((err)=>{
    res.status(500).send(err)})
@@ -56,9 +68,10 @@ const updateProfile = (req, res) => {
  User.update({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        adress: req.body.adress,
         email: req.body.email,
         password:  req.body.password,
- })
+ }, {where:{id:req.params.id}})
  .then((result)=>{
    res.status(200).send("profile updated")
   })
@@ -67,4 +80,4 @@ const updateProfile = (req, res) => {
   })
 };
 
-module.exports={getAll, add, updateProduct, remove, updateProfile}
+module.exports={getAll, oneProduct, add, updateProduct, remove, updateProfile}
