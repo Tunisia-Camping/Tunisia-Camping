@@ -9,6 +9,8 @@ import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
 import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
+import AdminPage from './admin/AdminPage.jsx'
+import axios from 'axios'
 
 
 
@@ -37,7 +39,8 @@ function App() {
 
   return(
     <Routes>
-        <Route path="/" element={<SellerHome/>} />
+        <Route path="/AdminPage" element={<AdminPage />}/>
+        <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
         <Route path='/login' element={ <Login/> } />
         <Route path='/register' element={ <Register/> } />
         <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
