@@ -22,13 +22,17 @@ const handleLogin = () => {
     password:password
   })
   .then((result) => {
-    const { token, id } = result.data;
+    const { token, id ,email , password ,firstName,lastName,adress} = result.data;
 
     
    
     Cookies.set('token', token, { expires: 1 }); 
     Cookies.set('userId', id, { expires: 1 }); 
     Cookies.set('email', email, { expires: 1 }); 
+    Cookies.set('password', password, { expires: 1 }); 
+    Cookies.set('firstName', firstName, { expires: 1 }); 
+    Cookies.set('lastName', lastName, { expires: 1 }); 
+    Cookies.set('adress', adress, { expires: 1 }); 
     navigate("/")
     
   })
