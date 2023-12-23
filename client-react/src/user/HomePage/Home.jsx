@@ -2,7 +2,7 @@ import "./Home.css";
 import  {useEffect, useState} from "react";
 import axios from "axios"
 import Star from "../../assets/Vector.svg";
-
+import NavBar from '../edit/navbar'
  
 
  function Home({handleClick}){
@@ -41,6 +41,9 @@ import Star from "../../assets/Vector.svg";
   const displayedProducts = showAllProducts ? data : data.slice(0, 6);
 
   return (
+    <div>
+    <NavBar/>
+
  <div  className="homePage" >  
   <div   className="startOfthepage">
     <div  className="category">
@@ -88,6 +91,7 @@ import Star from "../../assets/Vector.svg";
       {!showAllProducts && (
         <button   id="add" onClick={() => setShowAllProducts(true)}>View All</button>
       )}
+ </div>
  </div>
  
 

@@ -8,6 +8,7 @@ import Profile from './Seller/component/Profile.jsx'
 import EditProfile from './user/edit/EditProfile.jsx'
 import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
+import AdminPage from './admin/AdminPage.jsx'
 import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
@@ -46,19 +47,21 @@ function App() {
       <div> 
         
         
-       <Routes>
-          <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
+       
+         <Routes>
+         <Route path="/AdminPage" element={<AdminPage />}/>
+         <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
           <Route path='/login' element={ <Login/> } />
-        <Route path='/register' element={ <Register/> } />
-        <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
-        <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
+          <Route path='/register' element={ <Register/> } />
+           <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
+          <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
           <Route path='/updateProfileSeller' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
           <Route path='/Cart' element={<Cart/>} />
       </Routes>
-      {/* < Footer/> */}
+      
       </div>
 
       
