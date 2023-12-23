@@ -17,7 +17,6 @@ app.use("/auth", translateRouteAuth);
 app.use("/admin", translateRouteAdmin);
 app.use("/seller", SellerRoute)
 
-
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
