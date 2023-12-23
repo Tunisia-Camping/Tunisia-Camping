@@ -1,4 +1,4 @@
-const conn= require('../../database-mysql/index')
+const {Product} = require('../../database-mysql/index')
  
 const getAll = (req, res) => {
  Product.findAll()

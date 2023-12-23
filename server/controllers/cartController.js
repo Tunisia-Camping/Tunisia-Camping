@@ -21,15 +21,15 @@ module.exports.getOneProduct = (req, res) => {
  })
 }
 module.exports.deleteOneProduct = (req, res) => {
- Product.destroy({where:{id:req.params.id}})
- .then(() => {
-   res.status(200).json({ message: 'product deleted successfully' })
- })
- .catch((err) => {
-   console.error('Error deleting product:', err);
-   res.status(500).json({ error: 'Internal Server Error' })
- })
-}
+  Product.destroy({ where: { id: req.params.id } })
+    .then(() => {
+      res.status(200).json({ message: 'Product deleted successfully' });
+    })
+    .catch((err) => {
+      console.error('Error deleting product:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+};
 module.exports.deleteAllProduct = (req, res) => {
    Product.destroy({ where: {} })
      .then((result) => {

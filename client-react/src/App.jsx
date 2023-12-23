@@ -10,13 +10,14 @@ import EditProfile from './user/edit/EditProfile.jsx'
 import Cart from './cart/Cart.jsx'
 import Login from './auth/login.jsx'
 import Register from './auth/register.jsx'
-
+import  WishList  from './wishList/WishList.jsx'
 
 
 function App() {
   return(
     <Routes>
-              <Route path="/cart" element={<Cart/>} />
+       <Route path="/wishlist" element={<WishList/>} />
+       <Route path="/cart" element={<Cart/>} />
         <Route path="/" element={<SellerHome/>} />
         <Route path='/login' element={ <Login/> } />
         <Route path='/register' element={ <Register/> } />
