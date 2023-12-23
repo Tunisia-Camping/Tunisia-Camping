@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
 import './Admin.css';
 import ProductAdmin from './ProductAdmin';
 import AddProduct from './AddProduct';
@@ -41,7 +42,7 @@ const AdminPage = () => {
         setDisplay(product.map((product) => <ProductAdmin key={product.id} product={product} />));
         break;
       case 'AddProduct':
-        setDisplay(<AddProduct onAddProduct={() => setRefresh(!refresh)} />);
+        setDisplay(<AddProduct onAddProduct={() => setRefresh(setRefresh) } refresh={refresh}/>);
         break;
       default:
         setDisplay('');
@@ -51,13 +52,16 @@ const AdminPage = () => {
   return (
     <div className="admin-page">
       <div className="admin-dashboard">
-        <button onClick={() => handleButtonClick('Clients')}>Clients</button>
-        <button onClick={() => handleButtonClick('Sellers')}>Sellers</button>
-        <button onClick={() => handleButtonClick('Products')}>Products</button>
-        <button onClick={() => handleButtonClick('AddProduct')}>Add Product</button>
+        <button  onClick={() => handleButtonClick('Clients')}>Clients</button>
+        <br /> <br />
+        <button  onClick={() => handleButtonClick('Sellers')}>Sellers</button>
+        <br /> <br />
+        <button  onClick={() => handleButtonClick('Products')}>Products</button>
+        <br /> <br />
+        <button  onClick={() => handleButtonClick('AddProduct')}>Add Product</button>
       </div>
       <div className="admin-content">
-        <h2>Welcome Admin</h2>
+        <h2 style={{color: '#f56a07'}}>Welcome Admin</h2>
         <div className="display-container">
           {display}
         </div>

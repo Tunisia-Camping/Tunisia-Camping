@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Admin.css';
 
-const AddProduct = ({ onAddProduct, setRefresh }) => {
+const AddProduct = ({ onAddProduct, setRefresh , refresh}) => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productCategory, setProductCategory] = useState('');
@@ -66,8 +66,8 @@ const AddProduct = ({ onAddProduct, setRefresh }) => {
       <label>Description:</label>
       <input type="text" value={productDescription} onChange={(e) => setProductDescription(e.target.value)} />
 
-      <label>Image:</label>
-      <input type="file" onChange={handleImageChange} />
+      <label className="form-label">Image:</label>
+      <input className="form-control" type="file" onChange={handleImageChange} />
 
       {selectedFile && <p>Selected File: {selectedFile.name}</p>}
 
