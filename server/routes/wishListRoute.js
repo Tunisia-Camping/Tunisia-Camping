@@ -5,5 +5,6 @@ wishListRoute.get("/getAllProduct",wishListController.getAllProduct);
 wishListRoute.get("/getOneProduct/:id",wishListController.getOneProduct);
 wishListRoute.delete("/deleteOneProduct/:id",wishListController.deleteOneProduct);
 wishListRoute.delete("/deleteAllProduct",wishListController.deleteAllProduct);
+wishListRoute.post("/addToCartFromWishlist/:id", wishListController.addToCartFromWishlist);
 
 module.exports =wishListRoute;

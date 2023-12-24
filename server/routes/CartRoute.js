@@ -5,5 +5,5 @@ CartRoute.get("/getAllProduct",CartController.getAllProduct);
 CartRoute.get("/getOneProduct/:id",CartController.getOneProduct);
 CartRoute.delete("/deleteOneProduct/:id",CartController.deleteOneProduct);
 CartRoute.delete("/deleteAllProduct",CartController.deleteAllProduct);
-
+CartRoute.post("/sendDiscountEmail/:email", CartController.sendDiscountEmail);
 module.exports =CartRoute;

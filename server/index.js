@@ -18,10 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 const PORT = 3000;
 
 app.use(cors());
+app.use("/client1",translateRouteClient1);
+app.use("/cart",translateRouteCart)
 app.use("/auth", translateRouteAuth);
 app.use("/admin", translateRouteAdmin);
 app.use("/clients",routerClients)
 app.use("/seller", SellerRoute)
+app.use("/wishList", translateRoutewishList);
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

@@ -39,3 +39,17 @@ module.exports.deleteAllProduct = (req, res) => {
        res.status(500).json({ error: err.message })
      })
  }
+ module.exports.addToCartFromWishlist = async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    const product = await Product.findOne({ where: { id: productId } });
+
+    await Product.destroy({ where: { id: productId } });
+
+    res.status(200).json({ message: 'Product added to cart successfully' });
+  } catch (error) {
+    console.error('Error adding to cart from wishlist:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

@@ -1,5 +1,5 @@
-const {Product,sequelize } = require("../../database-mysql/index.js");
- 
+const {Product,sequelize ,User} = require("../../database-mysql/index.js");
+
 module.exports.getAllProduct = (req, res) => {
  Product.findAll()
  .then((result)=>{
@@ -39,3 +39,35 @@ module.exports.deleteAllProduct = (req, res) => {
        res.status(500).json({ error: err.message })
      })
  }
+
+ module.exports.sendDiscountEmail = (req, res) => {
+   const email = req.params.email;
+ 
+   if (!email) {
+     return res.status(400).json({ error: 'Please provide your email.' });
+   }
+ 
+   User.findOne({ where: { email } })
+     .then((result) => {
+       if (!result) {
+         // Email not found in the database
+         return res.status(404).json({ error: 'Unknown information. Email not found.' });
+       }
+ 
+       // Email found in the database
+       res.status(200).json({ message: 'Discount email sent successfully.', user: result });
+     })
+     .catch((err) => {
+       if (err.name === 'SequelizeDatabaseError') {
+         // Handle specific database error (e.g., unknown column)
+         console.error('Error checking email in the database:', err);
+         res.status(500).json({ error: 'Internal Server Error', details: err.message });
+       } else {
+         // Handle other errors
+         console.error('Error checking email in the database:', err);
+         res.status(500).json({ error: 'Internal Server Error' });
+       }
+     });
+ };
+ 
+

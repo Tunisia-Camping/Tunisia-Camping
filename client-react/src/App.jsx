@@ -13,6 +13,7 @@ import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
 import Cart from './cart/Cart.jsx'
+import WishList  from './wishList/WishList.jsx'
 function App() {
    
 
@@ -60,6 +61,7 @@ function App() {
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
           <Route path='/Cart' element={<Cart/>} />
+          <Route path='/WishList' element={<WishList/>} />
       </Routes>
       
       </div>

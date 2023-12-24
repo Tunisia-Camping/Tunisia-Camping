@@ -1,96 +1,115 @@
+// WishList.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './wishList.css';
-import Header from '../../footerHeader/Header.jsx';
-import Footer from '../../footerHeader/Footer.jsx';
+import Cart from '../cart/Cart.jsx';
+import './wishlist.css';
 
-const WishList = () => {
-  const [products, setProducts] = useState([]);
+function WishList({ user = {} }) {
+  const [loggedId, setLoggedId] = useState(user.id || '');
+  const [wish, setWish] = useState([]);
+  const { addToCart } = Cart();
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (user.id) {
+      axios
+        .get(`http://localhost:3000/wishList/getAllProduct`)
+        .then((result) => {
+          const wishPromises = result.data.map((wish) => {
+            return axios.get(`http://localhost:3000/wishList/getOneProduct/${wish.ProductId}`);
+          });
 
-  const fetchProducts = () => {
-    axios.get('http://localhost:3000/wishList/getAllProduct')
-      .then(response => {
-        if (response.data && Array.isArray(response.data)) {
-          setProducts(response.data);
-        } else {
-          console.error('Unexpected response format from the server:', response.data);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching wishlist products:', error);
-      });
+          Promise.all(wishPromises)
+            .then((responses) => {
+              const productsData = responses.map((response) => response.data);
+              setWish(productsData);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user.id]);
+
+  const handleAddToCartFromWishlist = (productId) => {
+    if (loggedId) {
+      addToCart(productId);
+    } else {
+      alert('Please login first');
+    }
   };
 
-  const handleGetOne = (productId) => {
-    axios.get(`http://localhost:3000/wishList/getOneProduct/${productId}`)
-      .then(response => {
-        console.log('Product details:', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching product details:', error);
-      });
+  const handleDeleteFromWishlist = (productId) => {
+    const updatedWish = wish.filter((wish) => wish.id !== productId);
+    setWish(updatedWish);
   };
 
-  const handleDeleteOne = (productId) => {
-    axios.delete(`http://localhost:3000/wishList/${productId}`)
-      .then(response => {
-        console.log('Product deleted successfully:', response.data);
-        fetchProducts(); // Refresh the product list after deletion
-      })
-      .catch(error => {
-        console.error('Error deleting product:', error);
-      });
-  };
+  const handleGetAllFromWishlist = () => {
+    const wishlistItems = wish.map((product) => (
+      <div key={product.id} className="wishlist-item">
+        <img src={product.imageUrl[0]} alt={product.productName} />
+        <h3>{product.productName}</h3>
+        <p>{product.price}</p>
+        <button onClick={() => handleAddToCartFromWishlist(product.id)}>
+          Add to Cart
+        </button>
+        <button onClick={() => handleDeleteFromWishlist(product.id)}>
+          Remove
+        </button>
+      </div>
+    ));
 
-  const handleDeleteAll = () => {
-    axios.delete('http://localhost:3000/wishList/deleteAllProduct')
-      .then(response => {
-        console.log('All products deleted successfully:', response.data);
-        setProducts([]); // Clear the products array after deleting all products
-      })
-      .catch(error => {
-        console.error('Error deleting all products:', error);
-      });
+    // Render the wishlist items
+    return (
+      <div>
+        <h2>All Products in Wishlist</h2>
+        {wishlistItems}
+      </div>
+    );
   };
 
   return (
     <div>
-      <Header />
       <div className="allWish">
-        {/* Your existing JSX code for displaying wishlist */}
-        {/* ... */}
-
-        {/* Example of rendering products from the fetched data */}
+        <div>
+          <div className="wishAndBtn">
+            <span>Wishlist({wish.length})</span>
+          </div>
+        </div>
         <div className="allprod">
-          {products.map(product => (
+          {wish.map((product) => (
             <div className="product-container" key={product.id}>
               <div className="product-image">
-                <img src={product.imageUrl} alt={product.name} />
-                <button className="buy-button">AddToCart</button>
+                <img src={product.imageUrl[0]} alt={product.productName} />
+                <button className="buy-button" onClick={() => handleAddToCartFromWishlist(product.id)}>
+                  Add To Cart
+                </button>
               </div>
               <div className="product-details">
-                <div className="product-name">{product.name}</div>
-                <div className="product-price">{`$${product.price}`}</div>
-                <div>
-                  <button onClick={() => handleGetOne(product.id)}>Get Details</button>
-                  <button onClick={() => handleDeleteOne(product.id)}>Delete</button>
+                <div className="product-name">{product.productName}</div>
+                <div className="product-price">{product.price}</div>
+                <div className="wishlist-buttons">
+                  <button onClick={() => handleAddToCartFromWishlist(product.id)}>Add to Cart</button>
+                  <button onClick={() => handleDeleteFromWishlist(product.id)}>Delete</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        {/* ... */}
-        <div>
-          <button onClick={handleDeleteAll}>Delete All</button>
+        <div className="wishAndBtn">
+          <div className="sqandtxt">
+            <div className="square"></div>
+            <h2 className="jfy">just for you</h2>
+          </div>
+          <button onClick={() => handleGetAllFromWishlist()} className="wishbtn">See All</button>
         </div>
+        <div className="allprod">{/* Other products */}</div>
       </div>
-      <Footer />
     </div>
   );
-};
+}
 
 export default WishList;
+
