@@ -65,7 +65,7 @@ const handleWrongCredential = () => {
     }
   return (
     <dix>
-      <img className='login_img' src="https://i.imgur.com/YmW2J6F.png" alt="" />
+      <img className='login_img' src="https://media.discordapp.net/attachments/1151869834217402408/1188879688546922536/istockphoto-1055891566-612x612.jpg?ex=659c217e&is=6589ac7e&hm=840f85a41c0032f211931eec0ef81ccaffaa67f3a0df3d094fe53799f0a95eb6&=&format=webp&width=533&height=662" alt="" />
     <div className='BigDiv_Login'>
             {alert&& <div>
        <Stack sx={{ width: '100%' }} spacing={2}>
@@ -86,7 +86,7 @@ const handleWrongCredential = () => {
       <div className='input_sign'><TextField  onChange={(e)=>setEmail(e.target.value)} sx={{'& > :not(style)': { width: '50ch' },}} type='email' id="standard-basic" label="Email or Phone Number" variant="standard" /></div>
       <div className='input_sign'><TextField  onChange={(e)=>{setPassword(e.target.value)}} sx={{'& > :not(style)': { width: '50ch' },}} type='password' id="standard-basic" label="Password" variant="standard" /></div>
     </Box>
-        </div>
+        </div> 
         <div>
         <Stack  spacing={17} direction="row" >
             <Button onClick={()=>handleLogin()}  style={sty}>Log In</Button>
