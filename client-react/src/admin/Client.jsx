@@ -8,7 +8,10 @@ const Client = ({ client, onEditRole }) => {
     onEditRole(client.id, newRole);
   };
 
+  
   return (
+    <div>
+   
     <div className="product-card">
       <p>FirstName: {client.firstName}</p>
       <p>LastName: {client.lastName}</p>
@@ -17,6 +20,7 @@ const Client = ({ client, onEditRole }) => {
       <p>Email: {client.email}</p>
       <p>Role: {client.role}</p>
       <button onClick={handleEditRole}>Edit Role</button>
+    </div>
     </div>
   );
 };

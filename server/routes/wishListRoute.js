@@ -1,9 +1,9 @@
-const wishListRoute = require("express").Router();
-const wishListController = require("../controllers/wishList.js");
+const WishListRoute = require("express").Router();
+const WishListController = require("../controllers/wishList.js");
 
-wishListRoute.get("/getAllProduct",wishListController.getAllProduct);
-wishListRoute.get("/getOneProduct/:id",wishListController.getOneProduct);
-wishListRoute.delete("/deleteOneProduct/:id",wishListController.deleteOneProduct);
-wishListRoute.delete("/deleteAllProduct",wishListController.deleteAllProduct);
+WishListRoute.get("/getProductsOfUserInWishList/:id", WishListController.getProductsOfUserInWishList);
+WishListRoute.post("/addProductToWishList", WishListController.addProductToWishList);
+WishListRoute.delete("/deleteOneProductFromWishlist/:id", WishListController.deleteOneProductFromWishlist);
+WishListRoute.delete("/deleteAllProductFromWishlist", WishListController.deleteAllProductFromWishlist);
 
-module.exports =wishListRoute;
+module.exports = WishListRoute

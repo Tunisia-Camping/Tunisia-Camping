@@ -1,5 +1,4 @@
 .env
 node_modules
-react-client/dist/bundle.js
-
 package-lock.json
+react-client/dist/bundle.js

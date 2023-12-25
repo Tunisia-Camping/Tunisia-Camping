@@ -77,6 +77,7 @@ const AdminPage = () => {
       </div>
       <div className="admin-content">
         <h2 style={{ color: '#f56a07' }}>Admin Interface</h2>
+
         <div className="display-container">
           {display}
         </div>
