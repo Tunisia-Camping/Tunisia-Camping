@@ -59,32 +59,26 @@ module.exports.addProduct=(async(req,res)=>{
   }
 });
 
-module.exports.updateProduct=(async(req,res)=>{
-
-  const{name,price,description,unit,category,images}=req.body
-
+module.exports.updateRole=(async (req,res)=>{
+  const{id}=req.params
+  const{role}=req.body
   try{
-    console.log(req.params.id)
-    const currentProduct=await Product.findByPk(req.params.id)
-    if(!currentProduct){
-      return res.status(404).json('Product not found')
-    }  
-    currentProduct.name = name;
-    currentProduct.price = price;
-    currentProduct.description = description;
-    currentProduct.unit = unit;
-    currentProduct.category = category;
-    currentProduct.images = images;
-
-    await currentProduct.save()
-    console.log(currentProduct)
-
-    res.json(currentProduct)
+    const users=await User.findByPk(id)
+    if(!users){
+      return res.status(404).json('users not found')
+    }
+    const validRoles=['admin','seller','client'];
+    if(!validRoles.includes(role)){
+      return res.status(400).json('Invalid role value')
+    }
+    await users.update({role},{fields:['role']})
+    res.json({users:{id:users.id,role:users.role}})
   } catch(err){
     console.error(err)
     res.status(500).json(err)
   }
 })
+
 
 module.exports.deleteProduct=(async(req,res)=>{
   try{

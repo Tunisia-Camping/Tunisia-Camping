@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './Admin.css';
 import ProductAdmin from './ProductAdmin';
 import AddProduct from './AddProduct';
-import Client from './Client'
-import Seller from './Seller'
+import Client from './Client';
+import Seller from './Seller';
 
 const AdminPage = () => {
   const [display, setDisplay] = useState('');
@@ -33,35 +33,50 @@ const AdminPage = () => {
   const handleButtonClick = (category) => {
     switch (category) {
       case 'Clients':
-        setDisplay(clients.map((client) => <Client key={client.id} client={client} />));
+        setDisplay(clients.map((client) => (
+          <Client key={client.id} client={client} onEditRole={handleEditRole} />
+        )));
         break;
       case 'Sellers':
-        setDisplay(sellers.map((seller) => <Seller key={seller.id} seller={seller} />));
+        setDisplay(sellers.map((seller) => (
+          <Seller key={seller.id} seller={seller} onEditRole={handleEditRole}  />
+        )));
         break;
       case 'Products':
-        setDisplay(product.map((product) => <ProductAdmin key={product.id} product={product} />));
+        setDisplay(product.map((product) => (
+          <ProductAdmin key={product.id} product={product} />
+        )));
         break;
       case 'AddProduct':
-        setDisplay(<AddProduct onAddProduct={() => setRefresh(setRefresh) } refresh={refresh}/>);
+        setDisplay(<AddProduct onAddProduct={() => setRefresh(!refresh)} refresh={refresh} />);
         break;
       default:
         setDisplay('');
     }
   };
 
+  const handleEditRole = async (id, newRole) => {
+    try {
+      await axios.put(`http://localhost:3000/admin/updateRole/${id}`, { role: newRole });
+      setRefresh(!refresh);
+    } catch (error) {
+      console.error('Error updating role:', error);
+    }
+  };
+
   return (
     <div className="admin-page">
       <div className="admin-dashboard">
-        <button  onClick={() => handleButtonClick('Clients')}>Clients</button>
+        <button onClick={() => handleButtonClick('Clients')}>Clients</button>
         <br /> <br />
-        <button  onClick={() => handleButtonClick('Sellers')}>Sellers</button>
+        <button onClick={() => handleButtonClick('Sellers')}>Sellers</button>
         <br /> <br />
-        <button  onClick={() => handleButtonClick('Products')}>Products</button>
+        <button onClick={() => handleButtonClick('Products')}>Products</button>
         <br /> <br />
-        <button  onClick={() => handleButtonClick('AddProduct')}>Add Product</button>
+        <button onClick={() => handleButtonClick('AddProduct')}>Add Product</button>
       </div>
       <div className="admin-content">
-        <h2 style={{color: '#f56a07'}}>Welcome Admin</h2>
+        <h2 style={{ color: '#f56a07' }}>Admin Interface</h2>
         <div className="display-container">
           {display}
         </div>

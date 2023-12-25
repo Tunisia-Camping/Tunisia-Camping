@@ -5,7 +5,7 @@ translateRoute.get("/getAllClients", controller.getAllClients);
 translateRoute.get("/getAllSellers", controller.getAllSellers);
 translateRoute.get("/getAllProducts", controller.getAllProducts);
 translateRoute.post("/addProduct", controller.addProduct);
-translateRoute.put("/updateProduct/:id", controller.updateProduct);
+translateRoute.put("/updateRole/:id", controller.updateRole);
 translateRoute.delete("/deleteProduct/:id", controller.deleteProduct);
 
 
