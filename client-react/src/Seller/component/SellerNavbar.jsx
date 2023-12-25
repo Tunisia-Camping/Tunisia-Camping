@@ -2,7 +2,7 @@ import "./cssFiles/Navbar.css"
 import {Link} from 'react-router-dom'
 
 
-const Navbar=()=>{
+const SellerNavbar=()=>{
     return(
         <div>
 <header> 
@@ -29,4 +29,4 @@ const Navbar=()=>{
         
 }
 
-export default Navbar
+export default SellerNavbar

@@ -1,3 +1,4 @@
+// AdminPage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -33,28 +34,29 @@ const AdminPage = () => {
   const handleButtonClick = (category) => {
     switch (category) {
       case 'Clients':
-        setDisplay(clients.map((client) => (
-          <Client key={client.id} client={client} onEditRole={handleEditRole} />
-        )));
+        setDisplay(clients.map((client) => <Client key={client.id} client={client} onEditRole={handleEditRole} />));
         break;
       case 'Sellers':
-        setDisplay(sellers.map((seller) => (
-          <Seller key={seller.id} seller={seller} onEditRole={handleEditRole}  />
-        )));
+        setDisplay(sellers.map((seller) => <Seller key={seller.id} seller={seller} onEditRole={handleEditRole} />));
         break;
       case 'Products':
-        setDisplay(product.map((product) => (
-          <ProductAdmin key={product.id} product={product} />
-        )));
+        setDisplay(
+          product.map((product) => (
+            <ProductAdmin
+              key={product.id}
+              product={product}
+              onDeleteProduct={() => setRefresh(!refresh)}
+            />
+          ))
+        );
         break;
       case 'AddProduct':
-        setDisplay(<AddProduct onAddProduct={() => setRefresh(!refresh)} refresh={refresh} />);
+        setDisplay(<AddProduct onAddProduct={() => setRefresh(!refresh)} />);
         break;
       default:
         setDisplay('');
     }
   };
-
   const handleEditRole = async (id, newRole) => {
     try {
       await axios.put(`http://localhost:3000/admin/updateRole/${id}`, { role: newRole });
@@ -76,11 +78,8 @@ const AdminPage = () => {
         <button onClick={() => handleButtonClick('AddProduct')}>Add Product</button>
       </div>
       <div className="admin-content">
-        <h2 style={{ color: '#f56a07' }}>Admin Interface</h2>
-
-        <div className="display-container">
-          {display}
-        </div>
+        <h2 style={{ color: '#f56a07' }}>Welcome Admin</h2>
+        <div className="display-container">{display}</div>
       </div>
     </div>
   );

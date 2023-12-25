@@ -28,7 +28,7 @@ function App() {
   useEffect(()=>{
     axios.get("http://localhost:3000/seller/getAll").then((res)=>{
      setProducts(res.data)
-     setRefresh(!refresh)
+    
     })
     .catch((err)=>{
       console.log(err)
@@ -61,7 +61,7 @@ function App() {
           <Route path='/register' element={ <Register/> } />
            <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
           <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
-          <Route path='/updateProfileSeller' element={<Profile/>} />
+          <Route path='/SellerProfile/:id' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
