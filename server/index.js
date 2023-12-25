@@ -22,6 +22,7 @@ app.use("/auth", translateRouteAuth);
 app.use("/admin", translateRouteAdmin);
 app.use("/clients",routerClients)
 app.use("/seller", SellerRoute)
+app.use("/cart",translateRouteCart)
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

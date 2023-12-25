@@ -1,5 +1,25 @@
-const {Product,sequelize } = require("../../database-mysql/index.js");
+const {Product , Cart } = require("../../database-mysql/index.js");
  
+
+module.exports.getProductsOfUserInCart = (req,res) => {
+   Cart.findAll({ where:  {userId:req.params.id }}, {
+  
+})
+.then((result)=>{
+  const productIds = result.map((cart) => cart.productId);
+
+    Product.findAll({where:{id:productIds}})
+  .then((resultt)=>{res.status(200).json(resultt)})
+  .catch((err)=>{res.status(500).json(err)})
+ })
+ .catch((err)=>{ res.status(500).send(err) })
+};
+
+module.exports.addProductToCart = (req,res) => {
+  Cart.create(req.body)
+  .then((result)=>{res.status(200).send("successfully added to cart")})
+ .catch((err)=>{res.status(500).send("failed to add", err)})
+}
 module.exports.getAllProduct = (req, res) => {
  Product.findAll()
  .then((result)=>{
@@ -11,27 +31,19 @@ module.exports.getAllProduct = (req, res) => {
  })
 };
 
-module.exports.getOneProduct = (req, res) => {
- Product.findOne({where:{id:req.params.id}})
- .then((result)=>{
-    res.status(200).send(result)
- })
- .catch((err)=>{
-  res.status(500).send(err)
- })
-}
+
 module.exports.deleteOneProduct = (req, res) => {
-  Product.destroy({ where: { id: req.params.id } })
+  Cart.destroy({ where: { id: req.params.id } })
     .then(() => {
-      res.status(200).json({ message: 'Product deleted successfully' });
+      res.status(200).json({ message: 'Product from cart has been deleted successfully' });
     })
     .catch((err) => {
-      console.error('Error deleting product:', err);
+      console.error('Error deleting product from cart :', err);
       res.status(500).json({ error: 'Internal Server Error' });
     });
 };
 module.exports.deleteAllProduct = (req, res) => {
-   Product.destroy({ where: {} })
+   Cart.destroy({ where: {} })
      .then((result) => {
        res.status(200).json(result)
      })
