@@ -12,9 +12,10 @@ import AdminPage from './admin/AdminPage.jsx'
 import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
-import Cart from './cart/Cart.jsx'
+import Cart from './cart/Cart.jsx
 import Wishlist from './wishList/WishList.jsx'
 import About from './Aboutus/About.jsx'
+import GeneralHome from './auth/GeneralHome.jsx'
 
 function App() {
    
@@ -52,6 +53,8 @@ function App() {
         
        
          <Routes>
+         <Route path='/' element={<GeneralHome handleClick={handleClick}  />} />
+           <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
           <Route path='/login' element={ <Login/> } />

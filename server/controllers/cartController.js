@@ -7,8 +7,6 @@ module.exports.getProductsOfUserInCart = (req,res) => {
 })
 .then((result)=>{
   const productIds = result.map((cart) => cart.productId);
-
-
     Product.findAll({where:{id:productIds}})
   .then((resultt)=>{res.status(200).json(resultt)})
   .catch((err)=>{res.status(500).json(err)})
@@ -34,7 +32,9 @@ module.exports.getAllProduct = (req, res) => {
 
 
 module.exports.deleteOneProduct = (req, res) => {
+
   Cart.destroy({ where: { productId: req.params.id } })
+
     .then(() => {
       res.status(200).json({ message: 'Product from cart has been deleted successfully' });
     })
