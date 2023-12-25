@@ -7,5 +7,8 @@ CartRoute.delete("/deleteAllProduct",CartController.deleteAllProduct);
 CartRoute.get("/get/:id",CartController.getProductsOfUserInCart);
 CartRoute.post("/add",CartController.addProductToCart);
 
+CartRoute.post("/sendDiscountEmail/:email", CartController.sendDiscountEmail);
+
+
 
 module.exports =CartRoute;

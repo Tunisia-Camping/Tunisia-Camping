@@ -1,96 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './wishList.css';
-import Header from '../../footerHeader/Header.jsx';
-import Footer from '../../footerHeader/Footer.jsx';
+import React, { useState, useEffect } from "react";
+import './Wishlist.css';
+import Navbar from "../user/edit/navbar.jsx";
+import Footer from "../../footerHeader/Footer";
+import Cookies from "js-cookie";
+import axios from "axios";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton'; // Import IconButton from Material-UI
 
-const WishList = () => {
-  const [products, setProducts] = useState([]);
+const Wishlist = () => {
+  const [postData, setPostData] = useState([]);
+  const userId = Cookies.get('userId');
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    const fetchWishlist = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/wishList/getProductsOfUserInWishList/${userId}`);
+        const responseData = await response.json();
+        console.log(responseData, "fdsmfd;ù");
+        setPostData(responseData);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
 
-  const fetchProducts = () => {
-    axios.get('http://localhost:3000/wishList/getAllProduct')
-      .then(response => {
-        if (response.data && Array.isArray(response.data)) {
-          setProducts(response.data);
-        } else {
-          console.error('Unexpected response format from the server:', response.data);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching wishlist products:', error);
+    fetchWishlist();
+  }, [userId]); // Include userId in the dependency array to ensure useEffect is triggered when userId changes
+
+  const handleDelete = async (productId) => {
+    try {
+      await fetch(`http://localhost:3000/wishList/deleteOneProductFromWishlist/${productId}`, {
+        method: 'DELETE'
       });
+      setPostData((prevData) => prevData.filter((product) => product.id !== productId));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
-  const handleGetOne = (productId) => {
-    axios.get(`http://localhost:3000/wishList/getOneProduct/${productId}`)
-      .then(response => {
-        console.log('Product details:', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching product details:', error);
+  const handleDeleteAll = async () => {
+    try {
+      await fetch(`http://localhost:3000/wishList/deleteAllProductFromWishlist`, {
+        method: 'DELETE'
       });
+      setPostData([]);
+    } catch (error) {
+      console.error("Error deleting all products:", error);
+    }
   };
 
-  const handleDeleteOne = (productId) => {
-    axios.delete(`http://localhost:3000/wishList/${productId}`)
-      .then(response => {
-        console.log('Product deleted successfully:', response.data);
-        fetchProducts(); // Refresh the product list after deletion
-      })
-      .catch(error => {
-        console.error('Error deleting product:', error);
-      });
-  };
-
-  const handleDeleteAll = () => {
-    axios.delete('http://localhost:3000/wishList/deleteAllProduct')
-      .then(response => {
-        console.log('All products deleted successfully:', response.data);
-        setProducts([]); // Clear the products array after deleting all products
-      })
-      .catch(error => {
-        console.error('Error deleting all products:', error);
-      });
+  const handleAddToCart = (id) => {
+    axios.post('http://localhost:3000/cart/add', { userId: userId, productId: id })
+      .then(() => console.log('added to cart'))
+      .catch((error) => console.error('Error:', error));
   };
 
   return (
-    <div>
-      <Header />
-      <div className="allWish">
-        {/* Your existing JSX code for displaying wishlist */}
-        {/* ... */}
+    <>
+      <Navbar />
+      <hr />
+      <div className="divWishlist">
+        <div className="divWishlist23">
+          <div className="divWishlist24">Wishlist ({postData.length})</div>
+          <div className="divWishlist25" onClick={handleDeleteAll}>
+            Delete All
+          </div>
+        </div>
 
-        {/* Example of rendering products from the fetched data */}
-        <div className="allprod">
-          {products.map(product => (
-            <div className="product-container" key={product.id}>
-              <div className="product-image">
-                <img src={product.imageUrl} alt={product.name} />
-                <button className="buy-button">AddToCart</button>
-              </div>
-              <div className="product-details">
-                <div className="product-name">{product.name}</div>
-                <div className="product-price">{`$${product.price}`}</div>
-                <div>
-                  <button onClick={() => handleGetOne(product.id)}>Get Details</button>
-                  <button onClick={() => handleDeleteOne(product.id)}>Delete</button>
+        <div className="divWishlist26">
+          <div className="divWishlist27">
+            <div className="columnWishlist">
+              {postData.map((product) => (
+                <div className="divWishlist28" key={product.id}>
+                  <div className="deleteIconContainer">
+                    <IconButton onClick={() => handleDelete(product.id)}>
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </div>
+                  <div className="divWishlist36">{product.product_name}</div>
+                  <div className="divWishlist37">
+                    <div className="divWishlist38">{product.price}</div>
+                  </div>
+                  <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-        {/* ... */}
-        <div>
-          <button onClick={handleDeleteAll}>Delete All</button>
-        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
-};
+}
 
-export default WishList;
+export default Wishlist;
+
+
+
+
