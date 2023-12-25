@@ -22,7 +22,7 @@ import NavBar from '../edit/navbar'
     }
   };
 
-  
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -57,7 +57,8 @@ import NavBar from '../edit/navbar'
 
     </div>
     <div className="pub">
-{ <img    style={{width:"1000px",height:"500px"}} src="https://i.imgur.com/G0GeFGh.png"alt="" /> }
+{ <img    style={{width:"1000px",height:"500px"}} src={ "https://www.leparisien.fr/resizer/CY-PNgAxtLNGMP8TnFIcrWBdTLo=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/lpguideshopping/TE4BVPQCZEMUMMZHNIRJCCVQMY.jpg" } />  }
+
     </div>
   </div>
 
@@ -68,7 +69,7 @@ import NavBar from '../edit/navbar'
   
   <img   onClick={()=>{
     handleClick(product)
-  }} src={product.images[0].url }/>
+  }} src={product.images[0].url}/>
 
            <div className="Details">
             <p id="Product_Title">{product.name}</p>

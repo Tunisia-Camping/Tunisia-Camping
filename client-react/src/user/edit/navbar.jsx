@@ -38,7 +38,7 @@ export default function NavBar() {
             <li>
               <Link
                 className={`link ${location.pathname === "/Home" ? "active" : ""}`}
-                to="/"
+                to="/Home"
               >
                 Home
               </Link>

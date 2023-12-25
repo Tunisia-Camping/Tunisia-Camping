@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const conn = require("../database-mysql");
-const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
+// const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
 const translateRoutewishList = require("./routes/wishListRoute");
 const translateRouteClient1= require("./routes/Client1");
 const translateRouteCart = require("./routes/CartRoute");
@@ -19,7 +19,7 @@ const PORT = 3000;
 
 app.use(cors());
 app.use("/auth", translateRouteAuth);
-app.use("/admin", translateRouteAdmin);
+// app.use("/admin", translateRouteAdmin);
 app.use("/clients",routerClients)
 app.use("/seller", SellerRoute)
 app.listen(PORT, () => {

@@ -11,8 +11,8 @@ import NavBar from "./edit/navbar"
 function ProductsDetails() {
 const [quantity,setQuantity]=useState(1)
 const location = useLocation();
-  const product = location.state 
-console.log(location.state,"ee")
+  const product = location.state
+
 
 
   return (
@@ -25,8 +25,8 @@ console.log(location.state,"ee")
           <div className="vertical_gallery">
             <img src={product.images[0].url} alt="" />
             <img src={product.images[1].url}alt="" />
-            <img src={product.images[1].url} alt="" />
-            <img src={product.images[0].url} alt="" />
+            <img src={product.images[2].url} alt="" />
+            <img src={product.images[3].url} alt="" />
           </div>
           <div className="main_product">
             <img src={product.images[0].url} alt="" />
