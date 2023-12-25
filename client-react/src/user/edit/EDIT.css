@@ -413,10 +413,11 @@ margin-right: 10px;
     justify-content: flex-start;
     gap: var(--gap-base);
   }
-  .view-all-products {
+  .save {
     position: relative;
     line-height: 24px;
     font-weight: 500;
+    border-radius: 40px;
   }
   .button,
   .cancel-parent {
