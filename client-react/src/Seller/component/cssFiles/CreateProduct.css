@@ -18,7 +18,7 @@
     font-weight: bold;
   }
   
-  /* input[type="text"], */
+
   input[type="number"],
   textarea,
   select {
@@ -39,7 +39,7 @@
     margin-right: auto;
     width: 500px;
     height: 50px;
-    background: linear-gradient(to top, #00154c, #12376e, #23487f);
+    background: #5f84a2;
     color: #fff;
     border-radius: 50px;
     border: none;

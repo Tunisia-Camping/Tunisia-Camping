@@ -1,5 +1,5 @@
 import {useState} from "react";
-import Navbar from "./Navbar";
+import SellerNavbar from './SellerNavbar.jsx'
 import axios from "axios"
 import "./cssFiles/CreateProduct.css"
 
@@ -23,7 +23,7 @@ const addProduct=(e)=>{
   axios.post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
   .then((res)=>{
     console.log("secure",res.data.secure_url);
-   setImgUrl(res.data.secure_url)
+   setImgUrl([...imgUrl,{url:res.data.secure_url}])
    console.log("url",imgUrl)
   })
   .catch((err)=>{
@@ -54,7 +54,7 @@ const add=()=>{
     return(
       <div>
         <div>
-        <Navbar/>
+        <SellerNavbar/>
         </div>
       <div className="create">
           <h2>Create New Product</h2>

@@ -12,6 +12,7 @@ import AdminPage from './admin/AdminPage.jsx'
 import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
+import Cart from './cart/Cart.jsx'
 
 function App() {
    
@@ -24,7 +25,7 @@ function App() {
   useEffect(()=>{
     axios.get("http://localhost:3000/seller/getAll").then((res)=>{
      setProducts(res.data)
-     setRefresh(!refresh)
+    
     })
     .catch((err)=>{
       console.log(err)
@@ -48,18 +49,18 @@ function App() {
         
         
        
-         <Routes>
+      <Routes>
          <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
           <Route path='/login' element={ <Login/> } />
           <Route path='/register' element={ <Register/> } />
            <Route path='/addProduct' element={<CreateProduct refresh={refresh} setRefresh={setRefresh}/>} />
           <Route path='/:id' element={<SellerOneProduct refresh={refresh} setRefresh={setRefresh}/>} />
-          <Route path='/updateProfileSeller' element={<Profile/>} />
+          <Route path='/SellerProfile/:id' element={<Profile/>} />
           <Route path='/updatePDrofileClient' element={<EditProfile/>} />
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
-     
+          <Route path='/Cart' element={<Cart/>} />
       </Routes>
       
       </div>

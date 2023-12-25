@@ -1,4 +1,5 @@
 const {User,Product } = require("../../database-mysql/index");
+const bcrypt = require('bcrypt');
  
 const getAll = (req, res) => {
  Product.findAll()
@@ -64,13 +65,38 @@ const remove = (req, res) => {
   })
 };
 
-const updateProfile = (req, res) => {
+const checkpassword= (req,res)=>{
+  
+      const userInfo =User.findOne({
+        where: {
+          email: req.body.email,
+        }
+      });
+
+      if (!userInfo) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'User not found',
+        });
+      }
+      const isPasswordValid =  bcrypt.compare(req.body.currentPassword, userInfo.password);
+
+      if (!isPasswordValid) {
+
+  
+        
+        return res.status(401).json({
+          status: 'error',
+          message: 'Incorrect current password',
+        });
+      }
+      const hashedNewPassword = bcrypt.hash(req.body.newPassword, 10);
  User.update({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         adress: req.body.adress,
         email: req.body.email,
-        password:  req.body.password,
+        password: hashedNewPassword,
  }, {where:{id:req.params.id}})
  .then((result)=>{
    res.status(200).send("profile updated")
@@ -78,6 +104,6 @@ const updateProfile = (req, res) => {
   .catch((err)=>{
    res.status(500).send(err)
   })
-};
+}
 
-module.exports={getAll, oneProduct, add, updateProduct, remove, updateProfile}
+module.exports={getAll, oneProduct, add, updateProduct, remove, checkpassword }
