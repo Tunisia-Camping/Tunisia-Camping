@@ -11,7 +11,7 @@ const [price, setPrice] = useState (0)
 const [description, setDescription] = useState("")
 const [unit, setUnit] = useState(0)
 const [category, setCategory] = useState("Tent")
-const [imgUrl, setImgUrl] = useState("")
+const [imgUrl, setImgUrl] = useState([])
 
  
 const addProduct=(e)=>{

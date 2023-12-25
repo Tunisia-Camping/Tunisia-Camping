@@ -7,13 +7,16 @@
   justify-content: flex-start;
   align-items:flex-start;
   padding: 10rem;
+  gap:7rem
 }
+
 .category{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 200px;
+  gap:3rem
 }
 /* .homePage{
 margin: 400px
