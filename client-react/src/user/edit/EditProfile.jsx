@@ -19,7 +19,7 @@ const [confirmPassword,setConfirmPassword]= useState("")
 
 
 
-console.log(email,"aaaa")
+
 useEffect(() => {
   
   const token = Cookies.get('token');
@@ -148,7 +148,7 @@ console.log(err)
         <div className="cancel-parent">
           <button className="first-name">Cancel</button>
           <button className="button">
-            <div className="view-all-products" onClick={()=>{modifyProfile({email:email,newPassword:newPassword,currentPassword:currentPassword,firstName:firstName,lastName:lastName,adress:adress})}}>Save Changes</div>
+            <div className="save"  onClick={()=>{modifyProfile({email:email,newPassword:newPassword,currentPassword:currentPassword,firstName:firstName,lastName:lastName,adress:adress})}}>Save Changes</div>
           </button>
         </div>
       </div>
