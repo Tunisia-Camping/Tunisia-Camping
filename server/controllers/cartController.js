@@ -8,6 +8,7 @@ module.exports.getProductsOfUserInCart = (req,res) => {
 .then((result)=>{
   const productIds = result.map((cart) => cart.productId);
 
+
     Product.findAll({where:{id:productIds}})
   .then((resultt)=>{res.status(200).json(resultt)})
   .catch((err)=>{res.status(500).json(err)})
