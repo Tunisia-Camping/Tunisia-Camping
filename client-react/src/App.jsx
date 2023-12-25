@@ -13,7 +13,9 @@ import axios from 'axios'
 import ProductsDetails from './user/ProductDetail.jsx'
 import Home from './user/HomePage/Home.jsx'
 import Cart from './cart/Cart.jsx'
-import WishList  from './wishList/WishList.jsx'
+import Wishlist from './wishList/WishList.jsx'
+import About from './Aboutus/About.jsx'
+
 function App() {
    
 
@@ -30,7 +32,7 @@ function App() {
     .catch((err)=>{
       console.log(err)
     })
-  },[refresh])
+  },[])
 
   
 
@@ -61,17 +63,11 @@ function App() {
           <Route path='/one/:name' element={<ProductsDetails/>} />
           <Route path='/Home' element={<Home handleClick={handleClick}  />} />
           <Route path='/Cart' element={<Cart/>} />
-          <Route path='/WishList' element={<WishList/>} />
-      </Routes>
-      
-      </div>
-
-      
-     
-      
-   
-  )
-    
-}
+          <Route path='/WishList' element={<Wishlist/>} />
+          <Route path='/About' element={<About/>} />
+              </Routes>
+         </div>
+         )    
+    }
 
 export default App

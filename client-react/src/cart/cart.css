@@ -223,8 +223,10 @@
   }
 }
 
-/* Ensure there is no space at the top */
-body {
-  margin: 0;
-  padding: 0;
+.flexy{
+
+  background-color: var(--BG, #fff);
+  display: flex;
+  flex-direction: column;
+  margin-top: 8em;
 }
