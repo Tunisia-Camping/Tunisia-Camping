@@ -2,7 +2,7 @@
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
-// const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
+const translateRouteAdmin = require("./routes/routesAdmin/translate.route.admin");
 const WishListRoute= require("./routes/wishListRoute");
 const translateRouteClient1 = require("./routes/Client1");
 const cartRoute = require("./routes/CartRoute");
@@ -25,14 +25,14 @@ app.use(cors());
 app.use("/cart", cartRoute);
 app.use("/client1", translateRouteClient1);
 app.use("/auth", translateRouteAuth);
-// app.use("/admin", translateRouteAdmin);
+app.use("/admin", translateRouteAdmin);
 
 app.use("/clients", routerClients);
 app.use("/seller", SellerRoute);
 app.use("/wishList", WishListRoute);
 
 
-app.use("/cart",translateRouteCart)
+app.use("/cart",cartRoute)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
