@@ -68,7 +68,7 @@ import NavBar from '../edit/navbar'
   
   <img   onClick={()=>{
     handleClick(product)
-  }} src={product.images[0].url }/>
+  }} src={product.images[0] }/>
 
            <div className="Details">
             <p id="Product_Title">{product.name}</p>
