@@ -1,27 +1,27 @@
-/* Footer Component Styling */
+
 .footer {
   background-color: black;
   color: white;
-  padding: 20px; /* Reduced padding */
+  padding: 20px; 
   text-align: center;
+  width: 100%;
 }
 
-/* Container for Grid */
 .FooterContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Adjust gap between sections */
+  gap: 20px; 
 }
 
-/* Styling for Each Section */
+
 .section {
-  flex: 1; /* Each section takes equal width */
-  max-width: 400px; /* Increased maximum width for each section */
-  text-align: left; /* Adjust text alignment */
+  flex: 1; 
+  max-width: 400px; 
+  text-align: left; 
 }
 
-/* Styling for Input Section */
+
 .section input {
   width: 100%;
   padding: 10px;
@@ -30,7 +30,7 @@
   border-radius: 4px;
 }
 
-/* Styling for Google Play Images */
+
 .googlePlayImages {
   display: flex;
   gap: 8px;

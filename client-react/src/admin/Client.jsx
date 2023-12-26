@@ -16,7 +16,7 @@ const Client = ({ client, onEditRole }) => {
       <p>FirstName: {client.firstName}</p>
       <p>LastName: {client.lastName}</p>
       <p>Adress: {client.adress}</p>
-      <p>Password: {client.password}</p>
+      {/* <p>Password: {client.password}</p> */}
       <p>Email: {client.email}</p>
       <p>Role: {client.role}</p>
       <button onClick={handleEditRole}>Edit Role</button>

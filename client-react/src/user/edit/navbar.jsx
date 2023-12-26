@@ -30,7 +30,7 @@ export default function NavBar() {
     <div className={`NavBar ${showShadow ? "shadow" : ""}`}>
       <div className="NavContainer">
         <div className="NavWrapper">
-          <h1 className="Logo">Exclusive</h1>
+          <h1 className="Logo" style={{ color: '#f56a07'}}>Tunisia Camping</h1>
           <ul className="NavLinks">
             <li>
               <Link

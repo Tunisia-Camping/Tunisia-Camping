@@ -23,7 +23,7 @@ const addProduct=(e)=>{
   axios.post("http://api.cloudinary.com/v1_1/dfsyqvvim/image/upload", formData)
   .then((res)=>{
     console.log("secure",res.data.secure_url);
-   setImgUrl([...imgUrl,{url:res.data.secure_url}])
+   setImgUrl(res.data.secure_url)
    console.log("url",imgUrl)
   })
   .catch((err)=>{
