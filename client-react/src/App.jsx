@@ -54,7 +54,6 @@ function App() {
        
          <Routes>
          <Route path='/' element={<GeneralHome handleClick={handleClick}  />} />
-           <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/AdminPage" element={<AdminPage />}/>
          <Route path="/Seller" element={<SellerHome products={products} showProduct={showProduct}/>} />
           <Route path='/login' element={ <Login/> } />

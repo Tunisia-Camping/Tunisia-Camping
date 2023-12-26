@@ -22,10 +22,10 @@ const handleLogin = () => {
     password:password
   })
   .then((result) => {
-    const { token, id ,email , password ,firstName,lastName,adress} = result.data;
+    const { token, id ,email , password ,firstName,lastName,adress,role} = result.data;
 
     
-   
+    Cookies.set('role',role,{ expires: 1 })
     Cookies.set('token', token, { expires: 1 }); 
     Cookies.set('userId', id, { expires: 1 }); 
     Cookies.set('email', email, { expires: 1 }); 
@@ -33,7 +33,13 @@ const handleLogin = () => {
     Cookies.set('firstName', firstName, { expires: 1 }); 
     Cookies.set('lastName', lastName, { expires: 1 }); 
     Cookies.set('adress', adress, { expires: 1 }); 
-    navigate("/")
+    if(role==='seller'){
+      navigate("/Seller")
+    }
+    else if(role==='client'){
+      navigate("/Home")
+    }
+    
     
   })
   .catch((error) => {console.log(error) ;handleWrongCredential()});

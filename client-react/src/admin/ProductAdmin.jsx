@@ -1,15 +1,15 @@
-// ProductAdmin.jsx
+
 import React from 'react';
 import axios from 'axios';
 import './Admin.css';
 
 const ProductAdmin = ({ product, onDeleteProduct }) => {
   const handleDelete = () => {
-    // You need to implement the actual delete request to the backend here
+    
     axios.delete(`http://localhost:3000/admin/deleteProduct/${product.id}`)
       .then((res) => {
         console.log(res.data);
-        // Trigger the parent component's function to refresh the product list
+        
         onDeleteProduct();
       })
       .catch((err) => {
@@ -25,7 +25,7 @@ const ProductAdmin = ({ product, onDeleteProduct }) => {
       <p>Category: {product.category}</p>
       <p>Available Units: {product.unit}</p>
       <p>Description: {product.description}</p>
-      {/* Add the delete button */}
+      
       <button onClick={handleDelete}>Delete</button>
     </div>
   );
